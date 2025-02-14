@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+.logo{
+  font-family: "Playfair Display";
+}
+
 /* Essential starter CSS */
 *{
   box-sizing: border-box;
