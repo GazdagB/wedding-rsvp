@@ -1,5 +1,6 @@
 import Countdown from '../components/Countdown'
 import Hero from '../components/Hero'
+import OurStory from '../components/OurStory'
 
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div>
         <Hero/>
         <Countdown/>
+        <OurStory/>
     </div>
 
   )
