@@ -4,6 +4,10 @@
   font-family: "Playfair Display";
 }
 
+.dancing{
+   font-family: "Dancing Script"
+}
+
 @theme{
   --color-wedding-black: #131414; 
   --color-wedding-gray: #2A292C; 

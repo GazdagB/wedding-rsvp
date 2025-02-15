@@ -16,7 +16,7 @@ const Hero = () => {
                     <img className="object-cover scale-170 hover:scale-180 h-[398px] w-[298px] grayscale hover:grayscale-0 transition duration-300 cursor-pointer" src="/images/back.JPEG" alt="" />
                 </div>
             </div>
-            <p className='playfair text-3xl font-bold my-10 text-[#9F7C60]'>ÖSSZEHÁZASODUNK!</p>
+            <p className='playfair text-5xl font-bold my-10 text-[#9F7C60] dancing'>Összeházasodunk!</p>
             <p className="max-w-[500px] text-centermb-30 mb-20 text-[#7E7E80]">Örömmel meghívunk titeket életünk legszebb napjára! Ünnepeljétek velünk az esküvőnket, és legyetek részesei a boldogságunknak!</p>
             <FontAwesomeIcon className='text-4xl text-[#9F7C60] cursor-pointer' icon={faAngleDown} />
         </section>
