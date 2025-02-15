@@ -32,6 +32,7 @@ const Home = () => {
     
         // Cleanup the interval on unmount
         return () => clearInterval(timer)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
   return (
