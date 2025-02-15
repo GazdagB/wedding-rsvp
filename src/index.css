@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
-.logo{
+.logo,.playfair{
   font-family: "Playfair Display";
 }

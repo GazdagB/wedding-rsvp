@@ -38,7 +38,7 @@ const Home = () => {
   return (
     <div>
         <section className="hero flex items-center justify-center flex-col h-[100vh] min-h-[1100px] w-[100vw] ">
-            <div className="flex items-center justify-center gap-6 mt-20">
+            <div className="flex items-center justify-center gap-6 mt-50">
                 <img className="absolute opacity-30 w-[600px] z-10 pointer-events-none" src="/images/infinite-symbol.svg" alt="" />
                 <div className="overflow-hidden">
                     <img className="hover:scale-110 h-[398px] w-[298px] object-cover grayscale hover:grayscale-0 transition duration-300 cursor-pointer" src="/images/scala.JPG" alt="" />
@@ -54,24 +54,31 @@ const Home = () => {
             <FontAwesomeIcon className='text-4xl text-[#EDCDA9] cursor-pointer' icon={faAngleDown} />
         </section>
 
-        <section className='py-30'>
-        <div className="flex gap-4 justify-center mt-6">
+        <section className='pt-0 pb-30'>
+        <div className="flex gap-5 mt-6 flex-col items-center">
+          <p className='text-xl'>Hamarosan</p>
           {/* Display Countdown */}
-          <div className="text-center">
-            <p className="text-4xl font-bold">{padZero(countDown.days)}</p>
-            <p>Days</p>
-          </div>
-          <div className="text-center">
-            <p className="text-4xl font-bold">{padZero(countDown.hours)}</p>
-            <p>Hours</p>
-          </div>
-          <div className="text-center">
-            <p className="text-4xl font-bold">{padZero(countDown.minutes)}</p>
-            <p>Minutes</p>
-          </div>
-          <div className="text-center">
-            <p className="text-4xl font-bold">{padZero(countDown.seconds)}</p>
-            <p>Seconds</p>
+          <div className='flex'>
+              <div className="text-center w-30">
+                <p className="text-6xl font-bold playfair mb-4 text-[#bea794]">{padZero(countDown.days)}</p>
+                <p>Nap</p>
+              </div>
+
+              <div className="text-center w-20">
+                <p className="text-6xl font-bold playfair mb-4 text-[#bea794]">{padZero(countDown.hours)}</p>
+                <p>Óra</p>
+              </div>
+
+              <div className="text-center w-20">
+                <p className="text-6xl font-bold playfair mb-4 text-[#bea794]">{padZero(countDown.minutes)}</p>
+                <p>Perc</p>
+              </div>
+
+              <div className="text-center w-20">
+                <p className="text-6xl font-bold playfair mb-4 text-[#bea794]">{padZero(countDown.seconds)}</p>
+                <p>Másodperc</p>
+              </div>
+
           </div>
         </div>
         </section>
