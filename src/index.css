@@ -3,3 +3,11 @@
 .logo,.playfair{
   font-family: "Playfair Display";
 }
+
+@theme{
+  --color-wedding-black: #131414; 
+  --color-wedding-gray: #2A292C; 
+  --color-wedding-brown: #9F7C60; 
+  --color-wedding-light-gray: #7E7E80;
+  --color-wedding-champagne: #D1C9BE; 
+}
