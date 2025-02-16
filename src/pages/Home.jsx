@@ -1,7 +1,7 @@
 import Countdown from '../components/Countdown'
 import Hero from '../components/Hero'
-import OurStory from '../components/Location'
-
+import Location from '../components/Location'
+import Date from '../components/Date'
 
 const Home = () => {
   
@@ -9,7 +9,8 @@ const Home = () => {
     <div>
         <Hero/>
         <Countdown/>
-        <OurStory/>
+        <Location/>
+        <Date/>
     </div>
 
   )
