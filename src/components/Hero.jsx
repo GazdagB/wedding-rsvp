@@ -3,7 +3,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const Hero = () => {
   return (
-    <section className="hero flex items-center justify-center flex-col h-[100vh] min-h-[1100px] w-[100vw] ">
+    <section id='home' className="hero flex items-center justify-center flex-col h-[100vh] min-h-[1100px] w-[100vw] ">
             <div className="flex items-center justify-center gap-6 mt-50">
                 <img className="absolute opacity-30 w-[600px] z-10 pointer-events-none" src="/images/infinite-symbol.svg" alt="" />
                 <div className="overflow-hidden">

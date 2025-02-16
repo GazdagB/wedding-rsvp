@@ -1,15 +1,35 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-scroll";
 
 const Navbar = () => {
   return (
     <nav className="fixed items-center flex justify-between top-0 left-1/2 transform -translate-x-1/2 mt-4 bg-white/60 backdrop-blur-md px-20 py-10 pb-15 w-[1350px] z-20 rounded-lg">
         {/* Menu */}
         <div className="gap-3 flex max text-wedding-brown">
-            <Link to="/"  className={({isActive})=> `text-blue-500 hover:underline ${isActive ? "font-bold text-blue-700" : ""}`}>Rólunk</Link>
-            <Link to="/#helyszin" className={({isActive})=> `text-blue-500 hover:underline ${isActive ? "font-bold text-blue-700" : ""}`}>Helyszín</Link>
-            <Link to="/#datum" className={({isActive})=> `text-blue-500 hover:underline ${isActive ? "font-bold text-blue-700" : ""}`}>Dátum</Link>
-            <Link to="/#program" className={({isActive})=> `text-blue-500 hover:underline ${isActive ? "font-bold text-blue-700" : ""}`}>Program</Link>
-            <Link to="/#foto" className={({isActive})=> `text-blue-500 hover:underline ${isActive ? "font-bold text-blue-700" : ""}`}>Fotó album</Link>
+            <Link to="home" 
+            smooth={true}
+            className="cursor-pointer">Home</Link>
+
+            <Link to="helyszin" 
+            smooth={true} 
+            offset={-200}
+            className="cursor-pointer"
+            >Helyszín</Link>
+
+            <Link to="datum"
+            smooth={true} 
+            offset={-100}
+            className="cursor-pointer"
+            >Dátum</Link>
+
+            <Link 
+            to="program"
+            className="cursor-pointer"
+            >Program</Link>
+
+            <Link 
+            to="foto"
+            className="cursor-pointer"
+            >Fotó album</Link>
 
         </div>
 

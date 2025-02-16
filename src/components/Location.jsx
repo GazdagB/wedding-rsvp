@@ -10,7 +10,7 @@ FontAwesomeIcon
 
 const Location = () => {
   return (
-    <div className="w-full flex py-12 items-center bg-wedding-champagne flex-col">
+    <div id="helyszin" className="w-full flex py-12 items-center bg-wedding-champagne flex-col">
         <h2 className="dancing text-6xl text-wedding-gray mb-[63px]">A helyszín</h2>
         <div className="flex justify-center gap-[100px]">
           <div className="grid grid-cols-2 grid-rows-2">
