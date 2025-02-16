@@ -25,7 +25,7 @@ const Location = () => {
             <p className="w-[600px] mb-5">Lorem ipsum dolor sit amet consectetur. Quam est natoque pellentesque elementum purus fringilla ante neque. Sed volutpat ultrices et erat. Pellentesque faucibus elit at nisl consequat congue malesuada nibh tristique. Cursus consectetur condimentum potenti mauris tempus ac nec.
             </p>
             <p className="font-bold mb-[51px]">Bogád, Kápolnás domb, 7742 Magyarország</p>
-            <div className="text-3xl flex gap-3">
+            <div className="text-3xl flex gap-3 text-[#342d24]">
             <Link to={"https://galffybirtok.hu/"} target="_blank">
               <FontAwesomeIcon icon={faGlobe} />
             </Link>
