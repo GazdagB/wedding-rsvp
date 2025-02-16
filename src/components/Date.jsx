@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Date = () => {
   return (
     <div className='relative h-[860px] bg-fixed  bg-center bg-cover mb-100 flex items-center justify-center  flex-col'
