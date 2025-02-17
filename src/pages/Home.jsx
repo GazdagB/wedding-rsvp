@@ -1,16 +1,20 @@
+/* eslint-disable react/prop-types */
 import Countdown from '../components/Countdown'
 import Hero from '../components/Hero'
 import Location from '../components/Location'
 import Date from '../components/Date'
 
-const Home = () => {
+
+const Home = ({setActiveLink}) => {
+
+
   
   return (
     <div>
-        <Hero/>
+        <Hero setActiveLink={setActiveLink}/>
         <Countdown/>
-        <Location/>
-        <Date/>
+        <Location setActiveLink={setActiveLink}/>
+        <Date setActiveLink={setActiveLink}/>
     </div>
 
   )

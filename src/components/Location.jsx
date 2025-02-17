@@ -1,16 +1,31 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { faGlobe } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
+import { useEffect,useRef } from "react"
+import { useInView } from "motion/react"
 
 
 
 
 FontAwesomeIcon
 
-const Location = () => {
+const Location = ({setActiveLink}) => {
+    const myRef = useRef();
+    const inView = useInView(myRef,{amount: 0.9})
+    
+    useEffect(()=>{
+      if(inView){
+        setActiveLink("helyszin")
+      }
+    },
+  [inView])
+
+   
   return (
-    <div id="helyszin" className="w-full flex py-12 items-center bg-wedding-champagne flex-col">
+    <div ref={myRef} id="helyszin" className="w-full flex py-12 items-center bg-wedding-champagne flex-col">
         <h2 className="dancing text-6xl text-wedding-gray mb-[63px]">A helyszín</h2>
         <div className="flex justify-center gap-[100px]">
           <div className="grid grid-cols-2 grid-rows-2">

@@ -1,6 +1,21 @@
-const Date = () => {
+/* eslint-disable react/prop-types */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useInView } from "motion/react";
+import { useEffect,useRef } from "react";
+
+const Date = ({setActiveLink}) => {
+  const myRef = useRef();
+  const inView = useInView(myRef,{amount: 0.9})
+  
+  useEffect(()=>{
+    if(inView){
+      setActiveLink("date")
+    }
+  },[inView])
+
+  
   return (
-    <div id="datum" className='relative h-[860px] bg-fixed  bg-center bg-cover mb-100 flex items-center justify-center  flex-col'
+    <div ref={myRef} id="datum" className='relative h-[860px] bg-fixed  bg-center bg-cover mb-100 flex items-center justify-center  flex-col'
     style={{backgroundImage: "url('images/date-bg.jpg')"}}
     >
 
