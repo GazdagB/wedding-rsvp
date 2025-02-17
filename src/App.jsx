@@ -1,5 +1,6 @@
 //Dependencie imports 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 
 // Page imports 
 import Home from './pages/Home'
@@ -14,12 +15,13 @@ import './App.css'
 
 function App() {
 
+  const [activeLink, setActiveLink] = useState('home')
 
   return (
     <Router>
-      <Navbar/>
+      <Navbar activeLink={activeLink}/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setActiveLink={setActiveLink} />} />
         <Route path="/rsvp" element={<RSVP />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>

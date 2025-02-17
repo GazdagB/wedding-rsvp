@@ -1,25 +1,34 @@
 import { Link } from "react-scroll";
 
-const Navbar = () => {
+const Navbar = ({activeLink}) => {
   return (
     <nav className="fixed items-center flex justify-between top-0 left-1/2 transform -translate-x-1/2 mt-4 bg-white/60 backdrop-blur-md px-20 py-10 pb-15 w-[1350px] z-20 rounded-lg">
         {/* Menu */}
         <div className="gap-3 flex max text-wedding-brown">
-            <Link to="home" 
-            smooth={true}
-            className="cursor-pointer">Home</Link>
+            <div>
+                <Link to="home"
+                smooth={true}
+                className="cursor-pointer">Home</Link>
+                { activeLink === "home" && <div className="h-[2px] bg-amber-400 w-full"></div>}
+            </div>
 
-            <Link to="helyszin" 
-            smooth={true} 
-            offset={-200}
-            className="cursor-pointer"
-            >Helyszín</Link>
+            <div>
+                <Link to="helyszin"
+                smooth={true}
+                offset={-200}
+                className="cursor-pointer"
+                >Helyszín</Link>
+                { activeLink === "helyszin" && <div className="h-[2px] bg-amber-400 w-full"></div>}
+            </div>
 
-            <Link to="datum"
-            smooth={true} 
-            offset={-100}
-            className="cursor-pointer"
-            >Dátum</Link>
+            <div>
+                <Link to="datum"
+                smooth={true}
+                offset={-100}
+                className="cursor-pointer"
+                >Dátum</Link>
+                { activeLink === "date" && <div className="h-[2px] bg-amber-400 w-full"></div>}
+            </div>
 
             <Link 
             to="program"
