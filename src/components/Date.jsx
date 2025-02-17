@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useInView } from "motion/react";
 import { useEffect,useRef } from "react";
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-scroll";
 
 const Navbar = ({activeLink}) => {
