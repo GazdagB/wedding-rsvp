@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import Accordion from './Accordion'
 import gyik from "../assets/gyik.json"
  
