@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Location from '../components/Location'
 import Date from '../components/Date'
 import Accept from '../components/Accept'
+import GYIK from '../components/GYIK'
 
 
 const Home = ({setActiveLink}) => {
@@ -17,6 +18,7 @@ const Home = ({setActiveLink}) => {
         <Location setActiveLink={setActiveLink}/>
         <Date setActiveLink={setActiveLink}/>
         <Accept/>
+        <GYIK/>
     </div>
 
   )

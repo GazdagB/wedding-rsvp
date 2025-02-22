@@ -1,0 +1,31 @@
+[
+    {
+        "question": "👗🤵 Mi a dress code?",
+        "answer": "Az esemény formális, így kérjük, elegáns ruházatban érkezzetek!"
+    },
+    {
+        "question": "🧑🏻‍🤝‍🧑 Hozhatok magammal kisérőt? ",
+        "answer": "Kérlek, jelezd, hány fővel érkezel, hogy biztosítani tudjuk a helyeket és az étkezéseket."
+    },
+    {
+        "question": "❌💌 Mi történik, ha nem tudok részt venni az esküvőn?",
+        "answer": "Ha valamilyen oknál fogva nem tudsz eljönni, kérjük, értesíts minket minnél előbb, hogy megfelelően tudjunk tervezni."
+    },
+   
+    {
+        "question": "🎁 Milyen ajándéknak örülnétek? ",
+        "answer": "A legnagyobb ajándék számunkra, ha velünk ünnepelsz! Azonban, ha mégis szeretnél meglepni minket valamivel, örömmel fogadjuk a hozzájárulásokat egy új közös otthon tégláiba!"
+    },
+    {
+        "question": "🚗 Van parkolási lehetőség?",
+        "answer": "Igen, a helyszínen biztosított parkolók állnak rendelkezésre a vendégek számára."
+    },
+    {
+        "question": "🍽️ Hogy jelezzem, ha étel allergiám van?",
+        "answer": "Az esküvőn előre kiválasztott menük lesznek, így kérlek ha bármilyen étel allergiád van azt jelezd nekünk előre."
+    },
+    {
+        "question": "📧📞 Hogyan érhetem el a házaspárt, ha kérdésem van?",
+        "answer": "Kérdésekkel, kérésekkel vagy bármilyen egyéb információval kereshetitek minket az esküvő előtt és után is. Írjatok nekünk emailben, vagy hívjatok nyugodtan!"
+    }
+]
