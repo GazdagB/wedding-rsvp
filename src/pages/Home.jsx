@@ -5,6 +5,7 @@ import Location from '../components/Location'
 import Date from '../components/Date'
 import Accept from '../components/Accept'
 import GYIK from '../components/GYIK'
+import Program from '../components/Program/Program'
 
 
 const Home = ({setActiveLink}) => {
@@ -17,6 +18,7 @@ const Home = ({setActiveLink}) => {
         <Countdown/>
         <Location setActiveLink={setActiveLink}/>
         <Date setActiveLink={setActiveLink}/>
+        <Program/>
         <Accept/>
         <GYIK/>
     </div>
