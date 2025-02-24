@@ -6,6 +6,7 @@ import Date from '../components/Date'
 import Accept from '../components/Accept'
 import GYIK from '../components/GYIK'
 import Program from '../components/Program/Program'
+import Playlist from '../components/Playlist'
 
 
 const Home = ({setActiveLink}) => {
@@ -21,6 +22,7 @@ const Home = ({setActiveLink}) => {
         <Program/>
         <Accept/>
         <GYIK/>
+        <Playlist/>
     </div>
 
   )
