@@ -15,14 +15,14 @@ const Date = ({setActiveLink}) => {
 
   
   return (
-    <div ref={myRef} id="datum" className='relative h-[860px] bg-fixed  bg-center bg-cover flex items-center justify-center  flex-col'
+    <div ref={myRef} id="datum" className='relative py-30  px-5 bg-fixed  bg-center bg-cover flex items-center justify-center  flex-col'
     style={{backgroundImage: "url('images/date-bg.jpg')"}}
     >
 
         <div className='bg-black inset-0 absolute opacity-50 backdrop-blur-lg z-0'></div>
         <h2 className='dancing text-6xl text-white z-10 mb-10'>Az időpont</h2>
         <img className='z-10 mb-[68px]' src="/images/calendar.png" alt="" />
-        <h3 className='text-white text-[56px] dancing z-10'>2025 Szeptember 07. Vasárnap </h3>
+        <h3 className='text-white text-3xl md:text-[56px] dancing z-10'>2025 Szeptember 07. Vasárnap </h3>
 
     </div>
   )

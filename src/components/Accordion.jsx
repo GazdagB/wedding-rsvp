@@ -11,10 +11,10 @@ const Accordion = ({question,answer}) => {
         setAccordionOpen(prev => !prev)
     }
   return (
-    <div onClick={handleToggle} className='py-7 z-10 rounded-md bg-white w-[650px] px-5 mb-2 cursor-pointer'>
+    <div onClick={handleToggle} className='py-7 z-10 rounded-md bg-white w-[85%] md:w-[650px] px-5 mb-2 cursor-pointer'>
         <div className='flex flex-col justify-between'>
             <div className='flex justify-between w-full'>
-                <span className={`font-bold text-[20px] transition-all duration-300 ease-in-out ${accordionOpen ? "mb-2" :""}`}>{question}</span>
+                <span className={`font-bold me-5 text-[18px] md:text-[20px] transition-all duration-300 ease-in-out ${accordionOpen ? "mb-2" :""}`}>{question}</span>
                 {accordionOpen 
                 ? <span><FontAwesomeIcon icon={faMinus} /></span> 
                 : <span><FontAwesomeIcon icon={faPlus} /></span> 
@@ -27,7 +27,7 @@ const Accordion = ({question,answer}) => {
                     ? "grid-rows-[1fr] opacity-100"
                     : "grid-rows-[0fr] opacity-0"
                 }`}>
-                    <p className='w-[550px] overflow-hidden ms-7'>{answer}</p>
+                    <p className='md:w-[550px] overflow-hidden ms-2 md:ms-7'>{answer}</p>
                 </div>
         </div>
     </div>

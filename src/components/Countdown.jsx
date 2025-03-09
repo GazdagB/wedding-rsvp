@@ -35,7 +35,7 @@ const Countdown = () => {
     <section className='pt-0 pb-30'>
         <div className="flex gap-5 mt-6 flex-col items-center">
           <p className='text-xl text-[#7E7E80] '>Hamarosan</p>
-          <div className='h-0.5 w-200 bg-[#D1C9BE] rounded-full'></div>
+          <div className='h-0.5 w-[350px] md:w-[600px] lg:w-200 bg-[#D1C9BE] rounded-full'></div>
           {/* Display Countdown */}
           <div className='flex'>
               <div className="text-center w-30">
