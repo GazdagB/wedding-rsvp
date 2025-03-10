@@ -72,7 +72,7 @@ const Accept = () => {
             <div className="flex flex-col items-center">
               <div className="mb-8 flex md:block flex-col">
                 <label className="font-bold mb-3" htmlFor="">Üzenet a menyasszonynak és a vőlegénynek:</label>
-                <textarea className="bg-gray-300  h-32 p-3 mt-3 w-[80%] w-[350px] md:w-[550px] resize-none rounded-md"  name="message" id=""></textarea>
+                <textarea className="bg-gray-300  h-32 p-3 mt-3 w-[80%] md:w-[550px] resize-none rounded-md"  name="message" id=""></textarea>
               </div>
               <button className="bg-wedding-brown font-bold py-2 px-3 text-white rounded-md cursor-pointer">Beküldés</button>
             </div>
