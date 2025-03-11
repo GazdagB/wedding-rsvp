@@ -99,7 +99,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req,res)=>{
     try{
-        const rsvpToDelete = RSVP.findByIdAndDelete(req.params.id);
+        const rsvpToDelete = await RSVP.findByIdAndDelete(req.params.id);
         if(!rsvpToDelete){
             res.status(400).json({message: "Couldn't find the RSVP"})
         }
