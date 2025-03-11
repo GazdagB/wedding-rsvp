@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const validator = require('validator'); 
 const mongoose = require('mongoose'); 
 require('dotenv').config(); 
+const RSVP = require('./models/Rsvp');
 
 const app = express(); 
 const PORT = process.env.PROT || 5000; 
@@ -11,7 +12,8 @@ const PORT = process.env.PROT || 5000;
 const invitedGuests = [
     'john doe',
     'jane smith',
-    'mark johnson'
+    'mark johnson',
+    'erika máté'
 ]
 
 let rsvpList = []; 
@@ -25,26 +27,19 @@ app.get('/', (req,res)=>{
     res.send('Wedding RSVP API is running!');
 })
 
-app.post('/rsvp',(req,res)=>{
-    const {firstName,lastName, accept, email, adults, children5to10, childrenUnder5,message} = req.body;
+//POST an RSVP
+app.post('/rsvp', async (req, res) => {
+    const { firstName, lastName, accept, email, adults, children5to10, childrenUnder5, message } = req.body;
 
     const fullName = `${firstName.toLowerCase()} ${lastName.toLowerCase()}`;
 
-    if(!invitedGuests.includes(fullName)) {
-        return res.status(400).json({message: 'Your name is not on the guest list'});
+    // Check if the guest is on the invite list
+    if (!invitedGuests.includes(fullName)) {
+        return res.status(400).json({ message: 'Your name is not on the guest list' });
     }
 
-    if(!validator.isEmail(email)){
-        return res.status(400).json({message: 'Please provide a valid email adress.'})
-    }
-
-    const existingRSVP = rsvpList.find(rsvp => rsvp.email === email);
-
-    if (existingRSVP) {
-        return res.status(400).json({ message: 'You have already submitted your RSVP.' });
-    }
-
-    const rsvpData = {
+    // Create a new RSVP document
+    const newRsvp = new RSVP({
         fullName,
         accept,
         email,
@@ -52,16 +47,85 @@ app.post('/rsvp',(req,res)=>{
         children5to10,
         childrenUnder5,
         message
-    };
+    });
 
-    rsvpList.push(rsvpData)
+    try {
+        // Save the RSVP to the database
+        await newRsvp.save();
+        console.log('RSVP received:', newRsvp);
 
-    console.log('RSVP recieved:', rsvpData);
+        res.status(200).json({
+            message: 'Thank you for your RSVP!',
+            data: newRsvp
+        });
+    } catch (error) {
+        console.error('Error saving RSVP:', error);
+        res.status(500).json({ message: 'Error saving RSVP. Please try again later.' });
+    }
+});
 
-    res.status(200).json({
-        message: 'Thank you for your RSVP!',
-        data: rsvpData
-    })
+//GET ALL RSVPS
+app.get('/rsvps', async (req,res)=>{
+    try{
+        const {status} = req.query; 
+        let filter = {}; 
+
+        if (status) {
+            if (status !== 'accepted' && status !== 'declined') {
+                return res.status(400).json({ message: 'Invalid status value. Please use accepted or declined.' });
+            }
+            filter.accept = status === 'accepted'; // Convert query string to boolean
+        }
+
+        const rsvps = await RSVP.find(filter);
+        res.status(200).json(rsvps)
+    } catch (error){
+        console.log('Error fetching RSVPs:', error);
+        res.status(500).json({message: "Error fetching RSVPs"})
+    }
+})
+
+//GET RSVP
+app.get('/rsvp/:id', async (req,res)=>{
+    try{
+        const rsvp = await RSVP.findById(req.params.id);
+        if (!rsvp){
+            return res.status(404).json({message: 'RSVP not found'});
+        }
+
+        res.status(200).json(rsvp)
+    } catch(error){
+        console.error(error); 
+        res.status(500).json({message: 'Error geting RSVP'})
+    }
+})
+
+//Update RSVP
+app.put('/rsvp/:id', async (req, res) => {
+    try {
+        const updatedRsvp = await RSVP.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedRsvp) {
+            return res.status(404).json({ message: 'RSVP not found' });
+        }
+        res.status(200).json(updatedRsvp);
+    } catch (error) {
+        console.error('Error updating RSVP:', error);
+        res.status(500).json({ message: 'Error updating RSVP' });
+    }
+});
+
+app.delete('/rsvp/:id', async (req,res)=>{
+    try{
+        const rsvpToDelete = RSVP.findByIdAndDelete(req.params.id);
+        if(!rsvpToDelete){
+            res.status(400).json({message: "Couldn't find the RSVP"})
+        }
+
+        res.status(200).json({message: 'RSVP deleted sucsessfully!'});
+    } catch(error){
+        console.error(error); 
+
+    }
 })
 
 mongoose.connect(process.env.MONGO_URI, {
