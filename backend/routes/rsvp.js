@@ -7,14 +7,16 @@ const invitedGuests = [
     'john doe',
     'jane smith',
     'mark johnson',
-    'erika máté'
+    'erika máté',
+    'gazdag balázs',
+    'gazdag sándor'
 ]
 
 //POST an RSVP
 router.post('/', async (req, res) => {
     const { firstName, lastName, accept, email, adults, children5to10, childrenUnder5, message } = req.body;
 
-    const fullName = `${firstName.toLowerCase()} ${lastName.toLowerCase()}`;
+    const fullName = `${firstName.trim().toLowerCase()} ${lastName.trim().toLowerCase()}`;
 
     // Check if the guest is on the invite list
     if (!invitedGuests.includes(fullName)) {
