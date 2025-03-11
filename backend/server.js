@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors'); 
 const bodyParser = require('body-parser');
 const validator = require('validator'); 
+const mongoose = require('mongoose'); 
+require('dotenv').config(); 
 
 const app = express(); 
 const PORT = process.env.PROT || 5000; 
@@ -61,6 +63,13 @@ app.post('/rsvp',(req,res)=>{
         data: rsvpData
     })
 })
+
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('Connected to MongoDB Atlas'))
+.catch(err => console.error('Error connecting to MongoDB:', err));
 
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);    
