@@ -18,6 +18,12 @@ router.post('/', async (req, res) => {
 
     const fullName = `${firstName.trim().toLowerCase()} ${lastName.trim().toLowerCase()}`;
 
+    const existingRsvp = await RSVP.findOne({ fullName });
+        if (existingRsvp) {
+            return res.status(400).json({ message: 'You have already submitted an RSVP.' });
+        }
+
+
     // Check if the guest is on the invite list
     if (!invitedGuests.includes(fullName)) {
         return res.status(400).json({ message: 'Your name is not on the guest list' });
