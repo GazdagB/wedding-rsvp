@@ -14,7 +14,8 @@ const invitedGuests = [
 
 //POST an RSVP
 router.post('/', async (req, res) => {
-    const { firstName, lastName, accept, email, adults, children5to10, childrenUnder5, message } = req.body;
+    const { firstName, lastName, accept, email, adults, children5to10, childrenUnder5, message, adultsNames, children5to10Names, childrenUnder5Names } = req.body;
+
 
     const fullName = `${firstName.trim().toLowerCase()} ${lastName.trim().toLowerCase()}`;
 
@@ -37,6 +38,9 @@ router.post('/', async (req, res) => {
         adults,
         children5to10,
         childrenUnder5,
+        adultsNames,
+        children5to10Names,
+        childrenUnder5Names,
         message
     });
 
