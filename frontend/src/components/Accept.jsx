@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios"; 
+import Swal from 'sweetalert2'
 
 const Accept = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,16 @@ const Accept = () => {
       try{
         const response = await axios.post("http://localhost:5000/rsvp", formData);
         console.log("Response from server:", response.data);
-        alert("RSVP submitted successfully!")
+
+        if(response.status === 200){
+         Swal.fire({
+          title: "Köszönjük!",
+          text: "Köszönjük a visszajelzést! Várunk szeretettel!",
+          icon: 'success',
+          confirmButtonText: 'Rendben!',
+          confirmButtonColor: "#9f7c60"
+         })
+        } 
 
         setFormData({
           firstName: "",
@@ -38,8 +48,23 @@ const Accept = () => {
         });
         
       } catch(error){
-        console.error("Error submitting RSVP:", error); 
-        alert("There was an error submitting your RSVP. Please try again.")
+        if (error.response && error.response.data.message) {
+          // Show whatever error message the backend sends
+          Swal.fire({
+            title: "Hoppá...",
+            icon: "error",
+            text: error.response.data.message,
+             confirmButtonColor: "#9f7c60"
+          })
+      } else {
+          // Default error for unexpected issues
+          Swal.fire({
+            title: "Hoppá...",
+            icon: "error",
+            text: "Ismeretlen hiba történt kérlek próbáld meg később!",
+             confirmButtonColor: "#9f7c60"
+          })
+      }
       }
     // Now you can send `submittedData` to your backend (e.g., via an API request)
     // Example: axios.post('/submit', submittedData);

@@ -20,13 +20,13 @@ router.post('/', async (req, res) => {
 
     const existingRsvp = await RSVP.findOne({ fullName });
         if (existingRsvp) {
-            return res.status(400).json({ message: 'You have already submitted an RSVP.' });
+            return res.status(400).json({ message: 'Nem sikerült beküldeni. Már érkezett tőled visszajelzés!' });
         }
 
 
     // Check if the guest is on the invite list
     if (!invitedGuests.includes(fullName)) {
-        return res.status(400).json({ message: 'Your name is not on the guest list' });
+        return res.status(400).json({ message: 'A neved nem szerepel a vendég listán vagy elírtad.' });
     }
 
     // Create a new RSVP document
@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
         });
     } catch (error) {
         console.error('Error saving RSVP:', error);
-        res.status(500).json({ message: 'Error saving RSVP. Please try again later.' });
+        res.status(500).json({ message: 'Valamilyen hiba történt a beküldés folyamán.' });
     }
 });
 
