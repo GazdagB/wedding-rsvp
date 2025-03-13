@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 
 const Accept = () => {
   const [formData, setFormData] = useState({
@@ -207,7 +208,7 @@ const Accept = () => {
           <>
             {Array.from({ length: formData.adults }).map((_, index) => {
               return (
-                <div key={index} className="mb-2">
+                <motion.div initial={{y: -100}} animate={{y: 0}}  key={index} className="mb-2">
                   <input
                     className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
                     type="text"
@@ -217,7 +218,7 @@ const Accept = () => {
                       handleNameChange(index, "adultsNames", e.target.value)
                     }
                   />
-                </div>
+                </motion.div>
               );
             })}
           </>
@@ -246,10 +247,10 @@ const Accept = () => {
           </div>
 
           {formData.children5to10 > 0 && (
-            <>
+            <div>
               {Array.from({ length: formData.children5to10 }).map(
                 (_, index) => (
-                  <div key={index} className="mb-2">
+                  <motion.div initial={{y: -100}} animate={{y: 0}} key={index} className="mb-2">
                     <input
                       className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
                       type="text"
@@ -263,10 +264,10 @@ const Accept = () => {
                         )
                       }
                     />
-                  </div>
+                  </motion.div>
                 )
               )}
-            </>
+            </div>
           )}
 
           <div className="flex flex-col items-center w-full">
@@ -290,10 +291,10 @@ const Accept = () => {
           </div>
 
           {formData.childrenUnder5 > 0 && (
-            <>
+            <div>
               {Array.from({ length: formData.childrenUnder5 }).map(
                 (_, index) => (
-                  <div key={index} className="mb-2">
+                  <motion.div initial={{y: -100}} animate={{y: 0}} key={index} className="mb-2">
                     <input
                       className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
                       type="text"
@@ -307,10 +308,10 @@ const Accept = () => {
                         )
                       }
                     />
-                  </div>
+                  </motion.div>
                 )
               )}
-            </>
+            </div>
           )}
         </div>
 
