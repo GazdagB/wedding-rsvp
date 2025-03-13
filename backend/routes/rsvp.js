@@ -3,19 +3,15 @@ const RSVP = require('../models/Rsvp');
 
 const router = express.Router(); 
 
-const invitedGuests = [
-    'john doe',
-    'jane smith',
-    'mark johnson',
-    'erika máté',
-    'gazdag balázs',
-    'gazdag sándor'
-]
+const invitedGuests = require(path.join(__dirname, '../data/invitedGuests.json'));
 
 //POST an RSVP
 router.post('/', async (req, res) => {
-    const { firstName, lastName, accept, email, adults, children5to10, childrenUnder5, message, adultsNames, children5to10Names, childrenUnder5Names } = req.body;
+    const { firstName, lastName, accept, email, adults, children5to10, childrenUnder5, message, adultsNames, children5to10Names, childrenUnder5Names, password } = req.body;
 
+    if(!password){
+        return res.status(400).json({message: 'A jelszó megadása kötelező!'}); 
+    }
 
     const fullName = `${firstName.trim().toLowerCase()} ${lastName.trim().toLowerCase()}`;
 
@@ -26,8 +22,14 @@ router.post('/', async (req, res) => {
 
 
     // Check if the guest is on the invite list
-    if (!invitedGuests.includes(fullName)) {
-        return res.status(400).json({ message: 'A neved nem szerepel a vendég listán vagy elírtad.' });
+    const guest = invitedGuests.find(g => g.name === fullName);
+
+    if(!guest){
+        res.status(400).json({message: 'A neved nem szerepl a listán vagy elírtad.'})
+    }
+
+    if(guest.password !== password){
+        return res.status(400).json({message: 'Hibás jelszó. Kérlek ellenőrizd a meghívódon szereplő jelszót.'}); 
     }
 
     // Create a new RSVP document
