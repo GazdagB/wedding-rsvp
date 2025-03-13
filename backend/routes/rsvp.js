@@ -115,6 +115,28 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.delete('/all/:password', async (req,res)=>{
+    try{
+        const {password} = req.params; 
+
+        if(password !== process.env.ADMIN_PASS){
+            return res.status(401).json({message: 'Unauthorized. Incorrect password.'})
+
+            
+        }
+
+        const result = await RSVP.deleteMany({});
+
+        res.status(200).json({
+            message: 'All RSVPs deleted successfully',
+            deletedCount: result.deletedCount
+        })
+    } catch(error){
+        console.error('Error deleting all RSVPs:', error);
+        res.status(500).json({message: 'Error deletin all RSVPs'});
+    }
+})
+
 router.delete('/:id', async (req,res)=>{
     try{
         const rsvpToDelete = await RSVP.findByIdAndDelete(req.params.id);
