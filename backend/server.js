@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); 
 require('dotenv').config(); 
 const rsvpRoutes = require('./routes/rsvp');
+const adminRoutes = require('./routes/admin')
 
 const app = express(); 
 const PORT = process.env.PROT || 5000; 
@@ -18,6 +19,7 @@ app.get('/', (req,res)=>{
 })
 
 app.use('/rsvp',rsvpRoutes)
+app.use('/admin', adminRoutes)
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
