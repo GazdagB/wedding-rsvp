@@ -1,9 +1,13 @@
-const express = require('express'); 
-const RSVP = require('../models/Rsvp'); 
+const express = require('express');
+const RSVP = require('../models/Rsvp');
+const path = require('path');
+const fs = require("fs")
 
-const router = express.Router(); 
+const router = express.Router();
 
-const invitedGuests = require(path.join(__dirname, '../data/invitedGuests.json'));
+// Read the JSON file directly using fs
+const invitedGuestsPath = path.join(__dirname, '../data/invitedGuests.json');
+const invitedGuests = JSON.parse(fs.readFileSync(invitedGuestsPath, 'utf8'))
 
 //POST an RSVP
 router.post('/', async (req, res) => {
@@ -25,7 +29,7 @@ router.post('/', async (req, res) => {
     const guest = invitedGuests.find(g => g.name === fullName);
 
     if(!guest){
-        res.status(400).json({message: 'A neved nem szerepl a listán vagy elírtad.'})
+       return res.status(400).json({message: 'A neved nem szerepl a listán vagy elírtad.'})
     }
 
     if(guest.password !== password){
