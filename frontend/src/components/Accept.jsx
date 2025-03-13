@@ -16,6 +16,7 @@ const Accept = () => {
     children5to10Names: [],
     childrenUnder5Names: [],
     message: "",
+    password: ""
   });
 
   const handleCountChange = (e, type) => {
@@ -64,7 +65,11 @@ const Accept = () => {
         adults: 0,
         children5to10: 0,
         childrenUnder5: 0,
+        adultsNames: [],
+        children5to10Names: [],
+        childrenUnder5Names: [],
         message: "",
+        password: ""
       });
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -117,6 +122,7 @@ const Accept = () => {
               required
               type="text"
               placeholder="Vezetéknév"
+              autoComplete="given-name"
             />
             {/* Last Name */}
             <input
@@ -128,8 +134,15 @@ const Accept = () => {
               required
               type="text"
               placeholder="Keresztnév"
+              autoComplete="family-name"
             />
           </div>
+        </div>
+
+        {/* Password field */}
+        <div>
+          <label htmlFor="password" className="font-bold" >Jelszó</label>
+          <input className="bg-gray-300 py-2 mb-10 px-4 rounded-md w-[80%] md:w-full" value={formData.password} onChange={(e)=>{setFormData({...formData, password: e.target.value})}} required type="password" name="password" id="pass" placeholder="Jelszó" />
         </div>
 
         {/* Accept field */}
