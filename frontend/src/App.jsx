@@ -1,32 +1,52 @@
-//Dependencie imports 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
-
-// Page imports 
+// App.js
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './auth/AuthContext';
+import { useState } from 'react';
+import Login from './pages/Login';
+import Admin from './pages/Admin';
 import Home from './pages/Home'
-import RSVP from './pages/RSVP'
-import Admin from './pages/Admin'
-
-//Components 
 import Navbar from './components/Navbar'
 
-//Styling import
-import './App.css'
 
+// Protected route component
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, loading } = useAuth();
+  
+  if (loading) {
+    return <div className="flex items-center justify-center h-screen">Loading...</div>;
+  }
+  
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
+
+// Public route that redirects authenticated users
+const PublicRoute = ({ children }) => {
+  const { isAuthenticated, loading } = useAuth();
+  
+  if (loading) {
+    return <div className="flex items-center justify-center h-screen">Loading...</div>;
+  }
+  
+  return !isAuthenticated ? children : <Navigate to="/admin" />;
+};
+
+// Main App with Auth Provider
 function App() {
 
-  const [activeLink, setActiveLink] = useState('home')
+ 
 
   return (
-    <Router>
-      <Navbar activeLink={activeLink}/>
+    <BrowserRouter>
+      <AuthProvider>
       <Routes>
-        <Route path="/" element={<Home setActiveLink={setActiveLink} />} />
-        <Route path="/rsvp" element={<RSVP />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+        <Route path="/" element={<Home/>} />
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
-    </Router>
-  )
+      </AuthProvider>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

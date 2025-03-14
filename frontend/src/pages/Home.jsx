@@ -7,14 +7,17 @@ import Accept from '../components/Accept'
 import GYIK from '../components/GYIK'
 import Program from '../components/Program/Program'
 import Playlist from '../components/Playlist'
+import Navbar from '../components/Navbar'
+import { useState } from 'react'
 
 
-const Home = ({setActiveLink}) => {
+const Home = () => {
 
+  const [activeLink, setActiveLink] = useState("home")
 
-  
   return (
     <div>
+        <Navbar activeLink={activeLink}/>
         <Hero setActiveLink={setActiveLink}/>
         <Countdown/>
         <Location setActiveLink={setActiveLink}/>
