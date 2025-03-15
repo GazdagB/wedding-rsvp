@@ -16,10 +16,19 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkToken = async () => {
       const token = localStorage.getItem('token');
+      const tokenExpiry = localStorage.getItem('tokenExpiry')
       
-      if (!token) {
+      if (!token || !tokenExpiry) {
         setIsAuthenticated(false);
         setLoading(false);
+        return;
+      }
+
+      const now = new Date().getTime();
+      if(now > parseInt(tokenExpiry)){
+        console.log("Token expired");
+        logout();
+        setLoading(false); 
         return;
       }
 
@@ -63,7 +72,11 @@ export const AuthProvider = ({ children }) => {
 
   // Login function
   const login = (token) => {
+    const expiresAt = new Date().getTime() + (24 * 60 *60 * 1000);
+
     localStorage.setItem('token', token);
+    localStorage.setItem('tokenExpiry', expiresAt)
+
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     setIsAuthenticated(true);
     navigate('/admin');
@@ -72,6 +85,7 @@ export const AuthProvider = ({ children }) => {
   // Logout function
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiry')
     delete axios.defaults.headers.common['Authorization'];
     setIsAuthenticated(false);
     navigate('/login');
