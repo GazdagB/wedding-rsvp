@@ -1,5 +1,4 @@
 import Countdown from "../components/Countdown"
-import Sidebar from "../components/Sidebar/Sidebar"
 import { ImSpoonKnife } from "react-icons/im";
 import { FaChild } from "react-icons/fa";
 import { LuBaby } from "react-icons/lu";
