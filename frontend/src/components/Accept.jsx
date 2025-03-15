@@ -201,11 +201,13 @@ const Accept = () => {
           <label htmlFor="" className="font-bold mb-3">
             Felnőttek száma
           </label>
+          <p className="mb-3 text-wedding-light-gray">Magadat beleértve. (Legalább 1 felnőtt)</p>
           <select
             value={formData.adults}
             onChange={(e) => handleCountChange(e, "adults")}
             className="bg-gray-300 md:w-full w-[80%] py-2 px-3 rounded-md "
             name=""
+            required
             id=""
           >
             <option value="">Válasz...</option>
@@ -218,15 +220,17 @@ const Accept = () => {
         </div>
 
         {formData.adults > 0 && (
-          <>
+          <div>
+            <p className="text-center text-wedding-light-gray mb-5">A nevek megadása fontos az ültető kártyák szempontjából.</p>
             {Array.from({ length: formData.adults }).map((_, index) => {
               return (
                 <motion.div initial={{y: -100}} animate={{y: 0}}  key={index} className="mb-2">
                   <input
                     className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
                     type="text"
-                    placeholder={`Felnőtt ${index + 1} neve`}
+                    placeholder={`Felnőtt ${index + 1} teljes neve`}
                     value={formData.adultsNames[index]}
+                    required
                     onChange={(e) =>
                       handleNameChange(index, "adultsNames", e.target.value)
                     }
@@ -234,7 +238,7 @@ const Accept = () => {
                 </motion.div>
               );
             })}
-          </>
+          </div>
         )}
 
         {/* Children count */}
@@ -261,6 +265,7 @@ const Accept = () => {
 
           {formData.children5to10 > 0 && (
             <div>
+              <p className="text-center text-wedding-light-gray mb-5">A nevek megadása FONTOS! az ültető kártyák szempontjából.</p>
               {Array.from({ length: formData.children5to10 }).map(
                 (_, index) => (
                   <motion.div initial={{y: -100}} animate={{y: 0}} key={index} className="mb-2">
@@ -305,6 +310,7 @@ const Accept = () => {
 
           {formData.childrenUnder5 > 0 && (
             <div>
+              <p className="text-center text-wedding-light-gray mb-5">A nevek megadása FONTOS! az ültető kártyák szempontjából.</p>
               {Array.from({ length: formData.childrenUnder5 }).map(
                 (_, index) => (
                   <motion.div initial={{y: -100}} animate={{y: 0}} key={index} className="mb-2">

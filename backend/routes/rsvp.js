@@ -2,6 +2,7 @@ const express = require('express');
 const RSVP = require('../models/Rsvp');
 const path = require('path');
 const fs = require("fs")
+const verifyToken = require('../middleware/auth')
 
 const router = express.Router();
 
@@ -86,6 +87,36 @@ router.get('/all', async (req,res)=>{
     }
 })
 
+router.get('/counts', verifyToken, async (req, res) => {
+    try {
+      if (!req.user.isAdmin) {
+        return res.status(403).json({ message: 'Hozzáférés megtagadva. Adminisztrátori jogosultságok szükségesek.' });
+      }
+  
+      const acceptedRsvps = await RSVP.find({ accept: true });
+  
+      let totalAdults = 0;
+      let totalChildren5to10 = 0; // Fixed property name
+      let totalChildrenUnder5 = 0;
+  
+      acceptedRsvps.forEach(rsvp => {
+        totalAdults += rsvp.adults || 0;
+        totalChildren5to10 += rsvp.children5to10 || 0; // Fixed: using children5to10 instead of childrenUnder5
+        totalChildrenUnder5 += rsvp.childrenUnder5 || 0;
+      });
+  
+      res.status(200).json({
+        totalAdults,
+        totalChildren5to10, // Fixed property name
+        totalChildrenUnder5,
+        totalAttendees: totalAdults + totalChildren5to10 + totalChildrenUnder5
+      });
+    } catch (error) {
+      console.error('Error calculating RSVP counts', error);
+      res.status(500).json({ message: 'Error calculating RSVP counts' });
+    }
+  });
+
 //GET RSVP
 router.get('/:id', async (req,res)=>{
     try{
@@ -150,5 +181,7 @@ router.delete('/:id', async (req,res)=>{
 
     }
 })
+
+
 
 module.exports = router; 
