@@ -3,7 +3,7 @@
 import { useInView } from "motion/react";
 import { useEffect,useRef } from "react";
 
-const Date = ({setActiveLink}) => {
+const Date = ({setActiveLink,}) => {
   const myRef = useRef();
   const inView = useInView(myRef,{amount: 0.9})
   
