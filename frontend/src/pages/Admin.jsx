@@ -9,6 +9,7 @@ import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { useEffect } from "react";
 import axios from "axios";
+import ClipLoader from 'react-spinners/ClipLoader'
 
 
 
@@ -16,6 +17,7 @@ const Admin = () => {
 
   const [guestNumbers, setGuestNumbers] = useState({})
   const [numbersIsLoading,setNumbersIsLoading] = useState(true); 
+  const [foodPrice,setFoodprice] = useState(0); 
 
   useEffect(()=>{
     const  fetchData = async ()=>{
@@ -24,6 +26,7 @@ const Admin = () => {
         setGuestNumbers(response.data);
         console.log(response.data);
         setNumbersIsLoading(false);
+
     } catch (error) {
       console.error('Error fetching data with axios:', error)
       setNumbersIsLoading(false);
@@ -31,10 +34,27 @@ const Admin = () => {
     }
 
     fetchData()
-    console.log(guestNumbers);
     
   },[])
+
+  useEffect(() => {
+    if (Object.keys(guestNumbers).length > 0) {
+      const price = calcFoodPrice(guestNumbers);
+      setFoodprice(price);
+    }
+  }, [guestNumbers])
+
+  function calcFoodPrice(guestNumbers){
+     let foodPrice = 0;
+     foodPrice = guestNumbers.totalAdults * 35000;
+     foodPrice += guestNumbers.totalChildren5to10 * (35000/2)
+    return foodPrice;
+  }
   
+  function formatPrice(price) {
+    return price.toLocaleString("hu-HU") + " Ft";
+}
+
   return (
     <div className="">
       <div className="w-full pt-50 flex flex-col  items-center justify-center">
@@ -42,20 +62,20 @@ const Admin = () => {
           <div className="flex gap-10 mb-20">
             <div className="flex flex-col items-center">
               <div className="bg-wedding-champagne mb-3 flex items-center justify-center gap-3 text-wedding-brown-darker p-5 w-40 text-3xl font-semibold rounded-md text-center" ><FaUser />
-              {guestNumbers.totalAdults || 0}</div>
+              {numbersIsLoading ? <ClipLoader  color="#52493D" loading={numbersIsLoading}/> :  guestNumbers.totalAdults || "-"}</div>
               <p className="font-semibold text-2xl">Felnőtt</p>
             </div>
 
             <div className="flex flex-col items-center">
               <div className="bg-wedding-champagne flex items-center justify-center text-wedding-brown-darker mb-3 gap-3 p-5 w-40 text-3xl font-semibold rounded-md text-center" ><FaChild />
-              {guestNumbers.totalChildren5to10}</div>
+              {numbersIsLoading ? <ClipLoader  color="#52493D" loading={numbersIsLoading}/> :  guestNumbers.totalChildren5to10 || "-"}</div>
               <p className="font-semibold text-2xl">Gyerek</p>
               <p>5 - 10 év között</p>
             </div>
 
             <div className="flex flex-col items-center">
               <div className="bg-wedding-champagne mb-3 flex items-center justify-center gap-3 text-wedding-brown-darker p-5 w-40 text-3xl font-semibold rounded-md text-center" ><LuBaby />
-              {guestNumbers.totalChildrenUnder5}</div>
+              {numbersIsLoading ? <ClipLoader  color="#52493D" loading={numbersIsLoading}/> :  guestNumbers.totalChildrenUnder5 || "-"}</div>
               <p className="font-semibold text-2xl">Gyerek</p>
               <p>5 év alatt</p>
             </div>
@@ -69,7 +89,7 @@ const Admin = () => {
 
           <div className="flex flex-col items-center mb-10">
             <div className="bg-wedding-champagne text-wedding-brown-darker mb-3 flex gap-5 items-center p-5 px-10 text-3xl font-semibold rounded-md text-center"><ImSpoonKnife />
-            2.356.000Ft</div>
+            {formatPrice(foodPrice)}</div>
             <p className="text-2xl">Becsült étel költség</p>
           </div>
 
