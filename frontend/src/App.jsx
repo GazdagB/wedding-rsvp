@@ -8,6 +8,7 @@ import Admin from './pages/Admin';
 import Home from './pages/Home'
 import Guests from './pages/Guests';
 import AdminLayout from './components/Sidebar/AdminLayout';
+import Names from './pages/Names';
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -47,7 +48,7 @@ function App() {
         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
         <Route path='/admin/guests' element={<ProtectedRoute><Guests/></ProtectedRoute>}/>
-        <Route path='/admin/names' element={<ProtectedRoute></ProtectedRoute>}></Route>
+        <Route path='/admin/names' element={<ProtectedRoute><Names/></ProtectedRoute>}></Route>
         <Route path="/" element={<Home/>} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
