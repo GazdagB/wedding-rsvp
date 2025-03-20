@@ -1,7 +1,10 @@
 import { Link } from "react-scroll";
 import Hamburger from 'hamburger-react'
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion"; // Correct import for framer-motion
+import { motion } from "framer-motion"; 
+import { RiKey2Line } from "react-icons/ri";
+import {NavLink} from "react-router-dom"
+
 
 const Navbar = ({ activeLink }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,6 +79,9 @@ const Navbar = ({ activeLink }) => {
 
       {/* Extra Links */}
       <div className="gap-5 items-center hidden lg:flex">
+        <NavLink to={"/admin"}>
+          <RiKey2Line className={"cursor-pointer text-2xl"} />
+        </NavLink>
         <Link>GYIK</Link>
         <Link className="border border-wedding-light-gray text-wedding-gray p-2 font-semibold rounded-md hover:bg-wedding-brown hover:border-transparent hover:text-white transition duration-300" to="/rsvp">
           Ott leszek!
