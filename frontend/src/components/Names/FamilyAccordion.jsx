@@ -1,5 +1,7 @@
 import { IoIosArrowDropdown } from "react-icons/io";
 import { useState } from "react";
+import ListSection from "./ListSection";
+import { capitalizeName } from "../../utils/stringUtils";
 
 const FamilyAccordion = ({ guest }) => {
   function getFamilyName(fullName) {
@@ -9,14 +11,19 @@ const FamilyAccordion = ({ guest }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  console.log(guest);
+console.log("Adults:", guest.adultsNames);
+console.log("Children 5-10:", guest.children5to10Names);
+console.log("Children under 5:", guest.childrenUnder5Names);
+
   return (
     <div className="w-[500px]">
       {/* Header */}
       <div
-        className="bg-wedding-champagne w-full flex items-center justify-between font-bold py-2 px-5 rounded-md cursor-pointer gap-5"
+        className="mb-4 text-wedding-brown-darker bg-wedding-champagne w-full flex items-center justify-between font-bold py-4 px-5 rounded-md cursor-pointer gap-5"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        {getFamilyName(guest.fullName)}
+        {getFamilyName(capitalizeName(guest.fullName))}
         <IoIosArrowDropdown
           className={`text-xl transform transition-transform duration-300 ${
             isOpen ? "rotate-180" : "rotate-0"
@@ -30,33 +37,15 @@ const FamilyAccordion = ({ guest }) => {
           isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         } overflow-hidden`}
       >
-        <div className="p-5">
+        <div className="p-6 bg-gray-200 my-4 rounded-md text-gray-800">
           {/* Adults */}
-          <div>
-            <div className="font-bold">Felnőttek:</div>
-            <div className="h-[1px] w-full bg-wedding-light-gray"></div>
-            {guest.adultsNames.map((name, id) => (
-              <p key={id}>{name}</p>
-            ))}
-          </div>
+          <ListSection iconType={"adult"} title={"Felnőttek"} guestNamesArray={guest.adultsNames} ></ListSection>
 
           {/* Children (5-10) */}
-          <div>
-            <div className="font-bold">Gyerek (5-10):</div>
-            <div className="h-[1px] w-full bg-wedding-light-gray"></div>
-            {guest.children5to10Names.map((name, id) => (
-              <p key={id}>{name}</p>
-            ))}
-          </div>
+          <ListSection iconType={"child"} title={"Gyerekek 5-10év "} guestNamesArray={guest.children5to10Names}></ListSection>
 
           {/* Children (Under 5) */}
-          <div>
-            <div>Gyerek (5 alatt):</div>
-            <div className="h-[1px] w-full bg-wedding-light-gray mb-3"></div>
-            {guest.childrenUnder5Names.map((name, id) => (
-              <p key={id}>{name}</p>
-            ))}
-          </div>
+          <ListSection iconType={"baby"} title={"Gyerekek 5 év alatt"} guestNamesArray={guest.childrenUnder5Names}></ListSection>
         </div>
       </div>
     </div>

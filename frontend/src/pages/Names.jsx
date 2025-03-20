@@ -25,7 +25,8 @@ const Names = () => {
   return (
     <div className="w-full h-full ml-[80px]">
         <div className="flex flex-col items-center justify-center">
-            <h2 className="font-bold">Vendég nevek</h2>
+            <h2 className="font-bold text-2xl mb-5 mt-20">Vendég nevek</h2>
+            {guest.length === 0 ? "Még nincsenek visszaigazolt vendégek... ☹️" : ""}
             {guest.map((guest,id )=>{
                 return <FamilyAccordion key={id} guest={guest}/>
             })}
