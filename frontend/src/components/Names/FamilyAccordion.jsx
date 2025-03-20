@@ -1,6 +1,7 @@
 import { IoIosArrowDropdown } from "react-icons/io";
 import { useState } from "react";
 import ListSection from "./ListSection";
+import PropTypes from "prop-types"
 import { capitalizeName } from "../../utils/stringUtils";
 
 const FamilyAccordion = ({ guest }) => {
@@ -51,5 +52,14 @@ console.log("Children under 5:", guest.childrenUnder5Names);
     </div>
   );
 };
+
+FamilyAccordion.propTypes = {
+  guest: PropTypes.shape({
+    fullName: PropTypes.string.isRequired,
+    adultsNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+    children5to10Names: PropTypes.arrayOf(PropTypes.string).isRequired,
+    childrenUnder5Names: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+}
 
 export default FamilyAccordion;

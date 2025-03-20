@@ -6,8 +6,6 @@ import { FaMoneyBillWave } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa";
 import {AnimatePresence, motion} from "framer-motion"
 
-import {ToastContainer} from "react-toastify"
-
 //Utils
 import {calcFoodPrice} from "../utils/stringUtils"
 

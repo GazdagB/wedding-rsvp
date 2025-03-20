@@ -1,6 +1,7 @@
 import { FaUser } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
 import { LuBaby } from "react-icons/lu";
+import PropTypes from "prop-types";
 
 const ListSection = ({ guestNamesArray, title, iconType }) => {
   return (
@@ -22,5 +23,11 @@ const ListSection = ({ guestNamesArray, title, iconType }) => {
     </>
   );
 };
+
+ListSection.propTypes = {
+guestNamesArray: PropTypes.arrayOf(PropTypes.string).isRequired,
+title: PropTypes.string.isRequired,
+iconType: PropTypes.string
+}
 
 export default ListSection;
