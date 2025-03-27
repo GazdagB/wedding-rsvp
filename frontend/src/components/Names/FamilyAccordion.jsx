@@ -2,13 +2,8 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import { useState } from "react";
 import ListSection from "./ListSection";
 import PropTypes from "prop-types"
-import { capitalizeName } from "../../utils/stringUtils";
 
 const FamilyAccordion = ({ guest }) => {
-  function getFamilyName(fullName) {
-    const nameArray = fullName.split(" ");
-    return `${nameArray[0]} Család`;
-  }
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,7 +19,7 @@ console.log("Children under 5:", guest.childrenUnder5Names);
         className="mb-4 text-wedding-brown-darker bg-wedding-champagne w-full flex items-center justify-between font-bold py-4 px-5 rounded-md cursor-pointer gap-5"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        {getFamilyName(capitalizeName(guest.fullName))}
+        {guest.familyName}
         <IoIosArrowDropdown
           className={`text-xl transform transition-transform duration-300 ${
             isOpen ? "rotate-180" : "rotate-0"
@@ -55,7 +50,7 @@ console.log("Children under 5:", guest.childrenUnder5Names);
 
 FamilyAccordion.propTypes = {
   guest: PropTypes.shape({
-    fullName: PropTypes.string.isRequired,
+    familyName: PropTypes.string.isRequired,
     adultsNames: PropTypes.arrayOf(PropTypes.string).isRequired,
     children5to10Names: PropTypes.arrayOf(PropTypes.string).isRequired,
     childrenUnder5Names: PropTypes.arrayOf(PropTypes.string).isRequired,

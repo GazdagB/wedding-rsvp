@@ -49,7 +49,7 @@ const Guests = () => {
 
   const columns = [
     { field: '_id', headerName: 'ID', width: 90 },
-    { field: 'fullName', headerName: 'Név', width: 200, renderCell: (params) => capitalizeName(params.value) },
+    { field: 'familyName', headerName: 'Család', width: 200 },
     {
       field: 'accept',
       headerName: 'Státusz',
