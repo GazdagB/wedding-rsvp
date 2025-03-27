@@ -1,30 +1,26 @@
 [
     {
-      "name": "vódli gergő",
+      "familyName": "Vódli",
       "password": "gv2025"
     },
     {
-      "name": "pócza márk",
+      "familyName": "Pócza",
       "password": "pm2025"
     },
     {
-      "name": "wolf joel",
+      "familyName": "Wolf",
       "password": "wj2025"
     },
     {
-      "name": "borsodi barna",
+      "familyName": "Borsodi",
       "password": "bb2025"
     },
     {
-      "name": "szabó barnabás",
+      "familyName": "Szabó",
       "password": "szb2025"
     },
     {
-      "name": "máté erika",
+      "familyName": "Gazdag",
       "password": "mt2025"
-    },
-    {
-      "name": "gazdag balázs",
-      "password": "gb2025"
     }
   ]

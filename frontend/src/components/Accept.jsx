@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 
 const Accept = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    familyName: "",
     accept: true,
     email: "",
     adults: 0,
@@ -58,8 +57,7 @@ const Accept = () => {
       }
 
       setFormData({
-        firstName: "",
-        lastName: "",
+        familyName: "",
         accept: true,
         email: "",
         adults: 0,
@@ -81,7 +79,7 @@ const Accept = () => {
           confirmButtonColor: "#9f7c60",
         });
       } else {
-        // Default error for unexpected issues
+
         Swal.fire({
           title: "Hoppá...",
           icon: "error",
@@ -90,11 +88,6 @@ const Accept = () => {
         });
       }
     }
-    // Now you can send `submittedData` to your backend (e.g., via an API request)
-    // Example: axios.post('/submit', submittedData);
-
-    // Optionally clear the form or handle the response
-    // setFormData({ firstName: "", lastName: "", ...otherFields });
   };
 
   return (
@@ -106,35 +99,23 @@ const Accept = () => {
         Kérlek tudasd velünk hogy ott tudsz-e lenni velünk a nagy napunkon!
       </p>
       <form className="md:w-[550px]" onSubmit={handleSubmit}>
-        {/* First Name and Last Name */}
+        {/* family Name */}
         <div className="mb-8 w-full flex flex-col md:block items-center">
           <label htmlFor="name" className="font-bold">
-            Teljes név
+            Család név
           </label>
           <div className="flex flex-col items-center gap-5 mt-3 w-full">
-            {/* First Name */}
+            {/* Family Name */}
             <input
-              value={formData.firstName}
+              value={formData.familyName}
               onChange={(e) =>
-                setFormData({ ...formData, firstName: e.target.value })
+                setFormData({ ...formData, familyName: e.target.value })
               }
               className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
               required
               type="text"
-              placeholder="Vezetéknév"
+              placeholder="Családnév..."
               autoComplete="given-name"
-            />
-            {/* Last Name */}
-            <input
-              value={formData.lastName}
-              onChange={(e) =>
-                setFormData({ ...formData, lastName: e.target.value })
-              }
-              className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
-              required
-              type="text"
-              placeholder="Keresztnév"
-              autoComplete="family-name"
             />
           </div>
         </div>

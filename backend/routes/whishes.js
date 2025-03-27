@@ -34,7 +34,6 @@ router.get("/all",async (req,res)=>{
     } catch (error) {
         res.status(400).json({message: "Can't find whish"})
         console.log(error);
-        
     }
 
 })
