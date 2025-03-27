@@ -9,6 +9,7 @@ import Program from '../components/Program/Program'
 import Playlist from '../components/Playlist'
 import Navbar from '../components/Navbar'
 import { useState } from 'react'
+import Whishes from '../components/Whishes/Whishes'
 
 
 const Home = () => {
@@ -24,6 +25,7 @@ const Home = () => {
         <Date setActiveLink={setActiveLink}/>
         <Program/>
         <Accept/>
+        <Whishes></Whishes>
         <GYIK/>
         <Playlist/>
     </div>
