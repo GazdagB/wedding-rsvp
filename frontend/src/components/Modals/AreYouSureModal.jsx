@@ -8,6 +8,8 @@ import {toast} from 'react-toastify'
 
 const AreYouSureModal = ({guest,setDeleteModalIsOpen}) => {
 
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
     function closeModal(){
         setDeleteModalIsOpen(false)
     }
@@ -23,7 +25,7 @@ const AreYouSureModal = ({guest,setDeleteModalIsOpen}) => {
     
    async function handleDeleteGuest(guestId){
     try {
-        const response = await axios.delete(`http://localhost:5000/rsvp/${guestId}`)
+        const response = await axios.delete(`${API_URL }/rsvp/${guestId}`)
         console.log(response);
         toast.success('Sikeresen törölted a visszajelzést!', {
             position: "top-right",

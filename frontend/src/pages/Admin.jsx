@@ -23,10 +23,12 @@ const Admin = () => {
   const [numbersIsLoading,setNumbersIsLoading] = useState(true); 
   const [foodPrice,setFoodprice] = useState(0); 
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
   useEffect(()=>{
     const  fetchData = async ()=>{
       try {
-        const response = await axios.get('http://localhost:5000/rsvp/counts');
+        const response = await axios.get(`${API_URL}/rsvp/counts`);
         setGuestNumbers(response.data);
         console.log(response.data);
         setNumbersIsLoading(false);

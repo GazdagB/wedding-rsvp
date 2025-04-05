@@ -8,10 +8,12 @@ const Names = () => {
 
     const [guest, setGuest] = useState([]);
 
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
     useEffect(()=>{
         const fetchData = async ()=>{
             try {
-                const response = await axios.get("http://localhost:5000/rsvp/all");
+                const response = await axios.get(`${API_URL}/rsvp/all`);
                 setGuest(response.data)
             } catch (error) {
                 console.log(error);

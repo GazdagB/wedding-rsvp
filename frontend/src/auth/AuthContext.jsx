@@ -36,11 +36,6 @@ export const AuthProvider = ({ children }) => {
         // Set up axios to use token in all requests
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         
-        // Optional: Validate token with backend
-        // Uncomment this if you have a token verification endpoint
-        // const response = await axios.get('http://localhost:5000/admin/verify-token');
-        // if (response.status !== 200) throw new Error('Invalid token');
-        
         setIsAuthenticated(true);
       } catch (error) {
         console.error('Token validation failed:', error);

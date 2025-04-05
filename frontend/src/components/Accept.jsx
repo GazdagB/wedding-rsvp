@@ -4,6 +4,9 @@ import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 
 const Accept = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
   const [formData, setFormData] = useState({
     familyName: "",
     accept: true,
@@ -43,7 +46,7 @@ const Accept = () => {
     console.log("Form Data Submitted: ", formData);
 
     try {
-      const response = await axios.post("http://localhost:5000/rsvp", formData);
+      const response = await axios.post(`${API_URL }/rsvp`, formData);
       console.log("Response from server:", response.data);
 
       if (response.status === 200) {

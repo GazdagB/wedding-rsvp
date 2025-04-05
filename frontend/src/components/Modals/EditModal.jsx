@@ -22,6 +22,7 @@ const EditModal = ({ guest, setEditModalIsOpen }) => {
     setEditModalIsOpen(false);
   }
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
   useEffect(()=>{
     const editedFullName = (firstName + " " + lastName).toLowerCase();
@@ -81,7 +82,7 @@ const EditModal = ({ guest, setEditModalIsOpen }) => {
         children5to10Names,
         childrenUnder5Names,
       };
-      await axios.put(`http://localhost:5000/rsvp/${guest._id}`, updatedGuest);
+      await axios.put(`${API_URL}/rsvp/${guest._id}`, updatedGuest);
       toast.success("Sikeresen módosítottad a visszajelzést!");
       setEditModalIsOpen(false);
     } catch (error) {

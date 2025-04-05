@@ -11,13 +11,16 @@ const Login = () => {
         password: "gb990726"
     });
 
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
+
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading(true);
         setError(null);
         
         try {
-            const response = await axios.post('http://localhost:5000/admin/login', loginData);
+            const response = await axios.post(`${API_URL}/admin/login`, loginData);
             if (response.status === 200 && response.data.token) {
                 login(response.data.token);
             } else {

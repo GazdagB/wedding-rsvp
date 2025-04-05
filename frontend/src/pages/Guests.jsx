@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { IconButton, Modal, Box, Typography, Button } from '@mui/material';
-import { ExpandMore } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 import AreYouSureModal from '../components/Modals/AreYouSureModal';
 import { MdDeleteForever } from "react-icons/md";
 import { RiEdit2Fill } from "react-icons/ri";
 import axios from 'axios';
 import EditModal from '../components/Modals/EditModal';
 
-import { capitalizeName } from "../utils/stringUtils";
+
 import { AnimatePresence } from "framer-motion";
 
 const Guests = () => {
@@ -18,10 +17,12 @@ const Guests = () => {
   const [selectedGuest, setSelectedGuest] = useState(null);
   const [rows, setRows] = useState([]);
 
+   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
   useEffect(() => {
     const fetchGuests = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/rsvp/all');
+        const response = await axios.get(`${API_URL}/rsvp/all`);
         setRows(response.data);
       } catch (error) {
         console.error(error);
