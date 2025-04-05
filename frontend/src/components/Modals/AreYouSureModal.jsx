@@ -1,5 +1,3 @@
-import React from "react";
-import {capitalizeName} from "../../utils/stringUtils"
 import { FaExclamationTriangle } from "react-icons/fa";
 import axios from "axios";
 import {toast} from 'react-toastify'
