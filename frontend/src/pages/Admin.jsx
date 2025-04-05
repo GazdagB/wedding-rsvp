@@ -30,7 +30,6 @@ const Admin = () => {
       try {
         const response = await axios.get(`${API_URL}/rsvp/counts`);
         setGuestNumbers(response.data);
-        console.log(response.data);
         setNumbersIsLoading(false);
 
     } catch (error) {

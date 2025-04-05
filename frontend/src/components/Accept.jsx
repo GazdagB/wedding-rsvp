@@ -41,13 +41,8 @@ const Accept = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents the form from refreshing the page
 
-    // Concatenate first and last names into fullName
-
-    console.log("Form Data Submitted: ", formData);
-
     try {
       const response = await axios.post(`${API_URL }/rsvp`, formData);
-      console.log("Response from server:", response.data);
 
       if (response.status === 200) {
         Swal.fire({

@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
     try {
         // Save the RSVP to the database
         await newRsvp.save();
-        console.log('RSVP received:', newRsvp);
+    
 
         res.status(200).json({
             message: 'Thank you for your RSVP!',

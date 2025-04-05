@@ -26,7 +26,6 @@ const EditModal = ({ guest, setEditModalIsOpen }) => {
 
   useEffect(()=>{
     const editedFullName = (firstName + " " + lastName).toLowerCase();
-    console.log(editedFullName);
     
     setEditedGuest({...editedGuest, fullName: editedFullName })
   },[lastName,firstName])

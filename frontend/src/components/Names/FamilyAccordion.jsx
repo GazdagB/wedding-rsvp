@@ -7,11 +7,6 @@ const FamilyAccordion = ({ guest }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(guest);
-console.log("Adults:", guest.adultsNames);
-console.log("Children 5-10:", guest.children5to10Names);
-console.log("Children under 5:", guest.childrenUnder5Names);
-
   return (
     <div className="w-[500px]">
       {/* Header */}

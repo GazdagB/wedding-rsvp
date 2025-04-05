@@ -26,7 +26,6 @@ const AreYouSureModal = ({guest,setDeleteModalIsOpen}) => {
    async function handleDeleteGuest(guestId){
     try {
         const response = await axios.delete(`${API_URL }/rsvp/${guestId}`)
-        console.log(response);
         toast.success('Sikeresen törölted a visszajelzést!', {
             position: "top-right",
             autoClose: 4000,
