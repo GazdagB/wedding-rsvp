@@ -71,7 +71,7 @@ const AreYouSureModal = ({guest,setDeleteModalIsOpen}) => {
                 <p className="text-md text-gray-500">Biztos hogy törölni szeretnéd a következő vendége visszajelzését?</p>
                 <div className="flex flex-col gap-2 mt-4 ">
                 <p className="text-gray-400">ID: {guest?._id}</p>
-                <p className="font-semibold text-gray-800">{capitalizeName(guest?.fullName)}</p>
+                <p className="font-semibold text-gray-800">{guest?.familyName} Család</p>
                 <p>Család létszáma: {calculateGuests(guest)} fő</p>
                 </div>
             

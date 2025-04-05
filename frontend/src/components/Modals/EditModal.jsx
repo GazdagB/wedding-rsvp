@@ -7,8 +7,7 @@ import { capitalizeName } from "../../utils/stringUtils";
 
 const EditModal = ({ guest, setEditModalIsOpen }) => {
   const [editedGuest, setEditedGuest] = useState(guest);
-  const [firstName,setFirstName] = useState(capitalizeName(guest.fullName.split(" ")[0]))
-  const [lastName,setLastName] = useState(capitalizeName(guest.fullName.split(" ")[1]))
+  const [familyName,setFamilyName] = useState(capitalizeName(guest.familyName))
   const [adultsNames, setAdultsNames] = useState(guest.adultsNames || []);
   const [children5to10Names, setChildren5to10Names] = useState(
     guest.children5to10Names || []
@@ -23,12 +22,6 @@ const EditModal = ({ guest, setEditModalIsOpen }) => {
   }
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-
-  useEffect(()=>{
-    const editedFullName = (firstName + " " + lastName).toLowerCase();
-    
-    setEditedGuest({...editedGuest, fullName: editedFullName })
-  },[lastName,firstName])
 
   useEffect(() => {
     const fullEditedGuest = {
@@ -103,13 +96,8 @@ const EditModal = ({ guest, setEditModalIsOpen }) => {
         <h2 className="font-bold text-2xl">Visszajelzés szerkesztése</h2>
         <form >
             <div className="flex flex-col mb-2">
-                <label className="block text-md/6 font-semibold text-gray-900" htmlFor="">Vezetéknév</label>
-                <input className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-wedding-brown" value={firstName} onChange={(e)=>{setFirstName(e.target.value)}} type="text" />
-            </div>
-
-            <div className="flex flex-col mb-5">
-                <label className="block text-md/6 font-semibold text-gray-900" htmlFor="">Keresztnév</label>
-                <input className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-wedding-brown" value={lastName} onChange={(e)=>{setLastName(e.target.value)}} type="text" />
+                <label className="block text-md/6 font-semibold text-gray-900" htmlFor="">Családnév</label>
+                <input className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-wedding-brown" value={familyName} onChange={(e)=>{setFamilyName(e.target.value)}} type="text" />
             </div>
 
             <div className="mb-5">
