@@ -1,51 +1,91 @@
 import { motion } from "framer-motion";
 import Wish from "./Wish";
-import { FaAngleLeft } from "react-icons/fa6";
-import { FaAngleRight } from "react-icons/fa6";
-import { useEffect, useState } from "react";
-import axios from "axios"
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 
 const Wishes = () => {
+  const [wishesData, setWishesData] = useState([]);
+  const [dragConstraint, setDragConstraint] = useState(0);
+  const containerRef = useRef(null);
+  const contentRef = useRef(null);
+  
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-  const [wishesData,setWishesData] = useState([]);
-
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-
-  const fetchWhises = async ()=>{
+  const fetchWishes = async () => {
     try {
-      const response = await axios.get(`${API_URL}/whish/all`)
-      setWishesData(response.data.data)
-      
+      const response = await axios.get(`${API_URL}/whish/all`);
+      setWishesData(response.data.data);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-  }
+  };
 
-  useEffect(()=>{
-   fetchWhises()
-  },[])
+  useEffect(() => {
+    fetchWishes();
+  }, []);
+
+  // Calculate and update drag constraints
+  useEffect(() => {
+    const updateConstraints = () => {
+      if (containerRef.current && contentRef.current && wishesData.length > 0) {
+        const containerWidth = containerRef.current.clientWidth;
+        const contentWidth = contentRef.current.scrollWidth;
+        const maxDrag = contentWidth - containerWidth;
+        
+        setDragConstraint(maxDrag > 0 ? -maxDrag : 0);
+      }
+    };
+
+    // Update initially
+    updateConstraints();
+    
+    // Update on window resize
+    window.addEventListener('resize', updateConstraints);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', updateConstraints);
+  }, [wishesData]);
 
   return (
-    <div className="realtive flex items-center justify-center py-20 bg-gray-200" >
-        <FaAngleLeft className={"text-2xl text-wedding-brown me-4 "}/>
-      <div className="relative w-full max-w-[1200px]  z-10 overflow-hidden">
-        
-        
+    <div className="flex items-center justify-center py-20 bg-gray-200">
+      <button 
+        className="text-2xl text-wedding-brown me-4 cursor-pointer hover:opacity-80"
+        aria-label="Scroll left"
+      >
+        <FaAngleLeft />
+      </button>
       
-        {/* Gradient Mask */}
-        <div className="absolute inset-0 pointer-events-none z-10" />
-        {/* Draggable Container */}
+      <div 
+        ref={containerRef} 
+        className="relative w-full max-w-[1200px] z-10 overflow-hidden"
+      >
         <motion.div
+          ref={contentRef}
           className="flex space-x-6 cursor-grab"
           drag="x"
-          dragConstraints={{ right: 200, left: -(wishesData.length * 200) }}
+          dragConstraints={{ right: 0, left: dragConstraint }}
+          dragElastic={0.1}
+          whileTap={{ cursor: "grabbing" }}
+          key={dragConstraint} // Force re-render when constraints change
         >
-          {wishesData.map((whish) => (
-            <Wish key={whish.id} icon={whish.iconType} text={whish.message} author={whish.author} />
+          {wishesData.map((wish) => (
+            <Wish 
+              key={wish.id} 
+              icon={wish.iconType} 
+              text={wish.message} 
+              author={wish.author} 
+            />
           ))}
         </motion.div>
       </div>
-      <FaAngleRight  className={"text-2xl text-wedding-brown ms-4"} />
+      
+      <button 
+        className="text-2xl text-wedding-brown ms-4 cursor-pointer hover:opacity-80"
+        aria-label="Scroll right"
+      >
+        <FaAngleRight />
+      </button>
     </div>
   );
 };
