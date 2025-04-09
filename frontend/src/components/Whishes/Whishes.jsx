@@ -2,16 +2,29 @@ import { motion } from "framer-motion";
 import Wish from "./Wish";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
-
-const wishesData = [
-  "Wishing you a lifetime of love and happiness!",
-  "May your journey together be filled with endless joy!",
-  "Congratulations! Wishing you both a beautiful future.",
-  "May your love grow stronger each day!",
-  "Best wishes for a lifetime of love and laughter.",
-];
+import { useEffect, useState } from "react";
+import axios from "axios"
 
 const Wishes = () => {
+
+  const [wishesData,setWishesData] = useState([]);
+
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
+  const fetchWhises = async ()=>{
+    try {
+      const response = await axios.get(`${API_URL}/whish/all`)
+      setWishesData(response.data.data)
+      
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+  useEffect(()=>{
+   fetchWhises()
+  },[])
+
   return (
     <div className="realtive flex items-center justify-center py-20 bg-gray-200" >
         <FaAngleLeft className={"text-2xl text-wedding-brown me-4 "}/>
@@ -27,8 +40,8 @@ const Wishes = () => {
           drag="x"
           dragConstraints={{ right: 200, left: -(wishesData.length * 200) }}
         >
-          {wishesData.map((wish, index) => (
-            <Wish key={index} icon={"love"} text={wish} />
+          {wishesData.map((whish) => (
+            <Wish key={whish.id} icon={whish.iconType} text={whish.message} author={whish.author} />
           ))}
         </motion.div>
       </div>
