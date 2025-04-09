@@ -5,12 +5,14 @@ const router = express.Router();
 
 router.post("/",async (req,res)=>{
 
-    const {message, author, iconType} = req.body; 
+    const {message, author, iconType,password,familyName} = req.body; 
 
     const newWish = new Whish({
         message,
         author,
-        iconType
+        iconType,
+        familyName,
+        password
     })
 
     try {
@@ -35,6 +37,27 @@ router.get("/all",async (req,res)=>{
         res.status(400).json({message: "Can't find whish"})
         console.log(error);
     }
+
+})
+
+router.delete("/all/:password", async (req,res)=>{
+    try{
+            const {password} = req.params; 
+    
+            if(password !== process.env.ADMIN_PASS){
+                return res.status(401).json({message: 'Unauthorized. Incorrect password.'})
+            }
+    
+            const result = await Whish.deleteMany({});
+    
+            res.status(200).json({
+                message: 'All Whishes deleted successfully',
+                deletedCount: result.deletedCount
+            })
+        } catch(error){
+            console.error('Error deleting all Whishes:', error);
+            res.status(500).json({message: 'Error deletin all Whishes'});
+        }
 
 })
 
