@@ -60,7 +60,7 @@ const Wishes = () => {
         ref={containerRef} 
         className="relative w-full max-w-[1200px] z-10 overflow-hidden"
       > 
-        {wishesData <= 0 && <Wish author="Aletta & Balázs" text={"Még nincsenek kívánságok legyél az első aki ír eggyet!"} className="text-center text-wedding-light-gray"></Wish>}
+        {wishesData <= 0 && <p className="text-center text-wedding-light-gray">Még nincsenek kívánságok legyél az első aki ír eggyet!</p>}
 
         {wishesData.length > 0 &&  <motion.div
           ref={contentRef}
