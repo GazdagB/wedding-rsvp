@@ -59,10 +59,12 @@ const Wishes = () => {
       <div 
         ref={containerRef} 
         className="relative w-full max-w-[1200px] z-10 overflow-hidden"
-      >
-        <motion.div
+      > 
+        {wishesData <= 0 && <Wish author="Aletta & Balázs" text={"Még nincsenek kívánságok legyél az első aki ír eggyet!"} className="text-center text-wedding-light-gray"></Wish>}
+
+        {wishesData.length > 0 &&  <motion.div
           ref={contentRef}
-          className="flex space-x-6 cursor-grab"
+          className={`flex space-x-6 cursor-grab ${wishesData.length <= 2 ? "justify-center" : ""}`}
           drag="x"
           dragConstraints={{ right: 0, left: dragConstraint }}
           dragElastic={0.1}
@@ -77,7 +79,8 @@ const Wishes = () => {
               author={wish.author} 
             />
           ))}
-        </motion.div>
+        </motion.div>}
+       
       </div>
       
       <button 
