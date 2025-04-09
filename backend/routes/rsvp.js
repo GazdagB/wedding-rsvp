@@ -150,8 +150,6 @@ router.delete('/all/:password', async (req,res)=>{
 
         if(password !== process.env.ADMIN_PASS){
             return res.status(401).json({message: 'Unauthorized. Incorrect password.'})
-
-            
         }
 
         const result = await RSVP.deleteMany({});
