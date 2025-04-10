@@ -22,7 +22,7 @@ const Wish = ({ text, icon,author="Gazdag Balázs", ref,}) => {
     }
 
     return (
-      <div ref={ref} className={`${classNames} bg-white text-black shadow-lg rounded-xl min-h-[150px] px-6 py-4 items-center min-w-[300px] md:min-w-[400px] flex gap-5 relative`}>
+      <div ref={ref} className={`bg-white text-black shadow-lg rounded-xl min-h-[150px] px-6 py-4 items-center min-w-[300px] md:min-w-[400px] flex gap-5 relative`}>
         {/* Icon */}
         <div className="text-wedding-brown text-xl bg-gray-200 h-13 w-13 rounded-full flex-shrink-0 flex items-center justify-center">
             {selectedIcon}
