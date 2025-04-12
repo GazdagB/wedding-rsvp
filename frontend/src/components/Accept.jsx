@@ -4,8 +4,8 @@ import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 
 const Accept = () => {
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
   const [formData, setFormData] = useState({
     familyName: "",
@@ -23,10 +23,18 @@ const Accept = () => {
 
   const handleCountChange = (e, type) => {
     const count = +e.target.value;
+    const currentNames = formData[`${type}Names`];
+    
+    // Create a new array with the new length while preserving existing values
+    const newNames = Array(count).fill("").map((_, index) => {
+      // Keep existing names if available
+      return index < currentNames.length ? currentNames[index] : "";
+    });
+
     setFormData({
       ...formData,
       [type]: count,
-      [`${type}Names`]: Array(count).fill(""),
+      [`${type}Names`]: newNames,
     });
   };
 
@@ -35,14 +43,13 @@ const Accept = () => {
     updatedNames[index] = value; // Update the specific index with the new value
     setFormData({
       ...formData,
-      [type]: updatedNames, // Set the updated array back into state
+      [type]: updatedNames, 
     });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevents the form from refreshing the page
 
+  const onSubmit = async (e) => {
     try {
-      const response = await axios.post(`${API_URL }/rsvp`, formData);
+      const response = await axios.post(`${API_URL}/rsvp`, formData);
 
       if (response.status === 200) {
         Swal.fire({
@@ -77,7 +84,6 @@ const Accept = () => {
           confirmButtonColor: "#9f7c60",
         });
       } else {
-
         Swal.fire({
           title: "Hoppá...",
           icon: "error",
@@ -96,7 +102,7 @@ const Accept = () => {
       <p className="text-wedding-light-gray mb-10 text-center text-pretty">
         Kérlek tudasd velünk hogy ott tudsz-e lenni velünk a nagy napunkon!
       </p>
-      <form className="md:w-[550px]" onSubmit={handleSubmit}>
+      <form className="md:w-[550px]" onSubmit={handleSubmit(onSubmit)}>
         {/* family Name */}
         <div className="mb-8 w-full flex flex-col md:block items-center">
           <label htmlFor="name" className="font-bold">
@@ -120,8 +126,17 @@ const Accept = () => {
 
         {/* Password field */}
         <div>
-          <label htmlFor="password" className="font-bold" >Jelszó</label>
-          <input className="bg-gray-300 py-2 mb-10 px-4 rounded-md w-[80%] md:w-full" value={formData.password} onChange={(e)=>{setFormData({...formData, password: e.target.value})}} required type="password" name="password" id="pass" placeholder="Jelszó" />
+          <label htmlFor="password" className="font-bold">Jelszó</label>
+          <input 
+            className="bg-gray-300 py-2 mb-10 px-4 rounded-md w-[80%] md:w-full" 
+            value={formData.password} 
+            onChange={(e) => {setFormData({...formData, password: e.target.value})}} 
+            required 
+            type="password" 
+            name="password" 
+            id="pass" 
+            placeholder="Jelszó" 
+          />
         </div>
 
         {/* Accept field */}
@@ -184,7 +199,7 @@ const Accept = () => {
           <select
             value={formData.adults}
             onChange={(e) => handleCountChange(e, "adults")}
-            className="bg-gray-300 md:w-full w-[80%] py-2 px-3 rounded-md "
+            className="bg-gray-300 md:w-full w-[80%] py-2 px-3 rounded-md"
             name=""
             required
             id=""
@@ -203,12 +218,12 @@ const Accept = () => {
             <p className="text-center text-wedding-light-gray mb-5">A nevek megadása fontos az ültető kártyák szempontjából.</p>
             {Array.from({ length: formData.adults }).map((_, index) => {
               return (
-                <motion.div initial={{y: -100}} animate={{y: 0}}  key={index} className="mb-2">
+                <motion.div initial={{y: -100}} animate={{y: 0}} key={index} className="mb-2">
                   <input
                     className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
                     type="text"
                     placeholder={`Felnőtt ${index + 1} teljes neve`}
-                    value={formData.adultsNames[index]}
+                    value={formData.adultsNames[index] || ""}
                     required
                     onChange={(e) =>
                       handleNameChange(index, "adultsNames", e.target.value)
@@ -252,7 +267,7 @@ const Accept = () => {
                       className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
                       type="text"
                       placeholder={`Gyerek ${index + 1} neve (5-10 év)`}
-                      value={formData.children5to10Names[index]}
+                      value={formData.children5to10Names[index] || ""}
                       onChange={(e) =>
                         handleNameChange(
                           index,
@@ -297,7 +312,7 @@ const Accept = () => {
                       className="bg-gray-300 py-2 px-4 rounded-md w-[80%] md:w-full"
                       type="text"
                       placeholder={`Gyerek ${index + 1} neve (5 év alatt)`}
-                      value={formData.childrenUnder5Names[index]}
+                      value={formData.childrenUnder5Names[index] || ""}
                       onChange={(e) =>
                         handleNameChange(
                           index,
