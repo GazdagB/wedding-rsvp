@@ -78,9 +78,9 @@ const Wishes = () => {
             whileTap={{ cursor: "grabbing" }}
             key={dragConstraint} // Force re-render when constraints change
           >
-            {wishesData.map((wish) => (
+            {wishesData.map((wish,id) => (
               <Wish
-                key={wish.id}
+                key={id}
                 icon={wish.iconType}
                 text={wish.message}
                 author={wish.author}
