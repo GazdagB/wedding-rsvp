@@ -112,8 +112,8 @@ const Wishes = () => {
         initial={{y: -100, opacity: 0}}
         animate={{opacity: 1, y: 0}}
         exit={{y: -100, opacity: 0}}
-        className="z-10 bg-white max-w-[500px] w-[80%] md:w-full h-[500px] rounded-md shadow-2xl">
-          <WhishForm/>
+        className="z-10 bg-white max-w-[500px] w-[80%] md:w-full rounded-md shadow-2xl">
+          <WhishForm setIsModalOpen={setIsModalOpen}/>
         </motion.div>
       </motion.div>}
       </AnimatePresence>
