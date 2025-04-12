@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 require('dotenv').config(); 
 const rsvpRoutes = require('./routes/rsvp');
 const adminRoutes = require('./routes/admin')
-const whishRouter = require('./routes/whishes')
+const whishRouter = require('./routes/whishes');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express(); 
 const PORT = process.env.PROT || 5000; 
@@ -23,12 +24,16 @@ app.use('/rsvp',rsvpRoutes)
 app.use('/admin', adminRoutes)
 app.use('/whish', whishRouter)
 
+app.use(errorHandler)
+
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 .then(() => console.log('Connected to MongoDB Atlas'))
 .catch(err => console.error('Error connecting to MongoDB:', err));
+
+
 
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);    

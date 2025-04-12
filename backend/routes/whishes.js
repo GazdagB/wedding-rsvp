@@ -2,28 +2,31 @@ const express = require('express');
 const Whish = require('../models/Whishes'); 
 const path = require("path")
 const fs = require("fs")
+const { MISSING_PASSWORD, GUEST_NOT_FOUND, INCORRECT_PASSWORD, LIMIT_REACHED, SERVER_ERROR } = require('../utils/errorsCodes');
+const AppError = require('../utils/AppError')
+
 
 const router = express.Router();
 
 const invitedGuestsPath = path.join(__dirname, '../data/invitedGuests.json');
 const invitedGuests = JSON.parse(fs.readFileSync(invitedGuestsPath, 'utf8'))
 
-router.post("/",async (req,res)=>{
+router.post("/",async (req,res, next)=>{
 
     const {message, author, iconType,password,familyName} = req.body; 
 
     if(!password){
-        return res.status(400).json({message: 'A jelszó megadása kötelező!'}); 
+        return next(new AppError(MISSING_PASSWORD.message, MISSING_PASSWORD.statusCode))
     }
 
     const guest = invitedGuests.find(g => g.familyName === familyName);
 
     if(!guest){
-       return res.status(400).json({message: 'A neved nem szerepl a listán vagy elírtad.'})
+       return next(new AppError(GUEST_NOT_FOUND.message, GUEST_NOT_FOUND.statusCode))
     }
 
     if(guest.password !== password){
-        return res.status(400).json({message: 'Hibás jelszó. Kérlek ellenőrizd a meghívódon szereplő jelszót.'}); 
+        return next(new AppError(INCORRECT_PASSWORD.message, INCORRECT_PASSWORD.statusCode))
     }
 
     const submittedCount = await Whish.find({familyName: familyName})
@@ -31,7 +34,7 @@ router.post("/",async (req,res)=>{
     
 
     if(submittedCount.length > 3){
-        return res.status(400).json({message: "Elfogytak a beküldhető üzeneteid 3/3 üzenet beküldve."})
+        return next(new AppError(LIMIT_REACHED.message, LIMIT_REACHED.statusCode));
     }
 
     const newWish = new Whish({
@@ -50,7 +53,7 @@ router.post("/",async (req,res)=>{
     })
     } catch (error) {
         console.log(error);
-        res.status(500).json({message: "Something went wrong!"})
+        next(new AppError(SERVER_ERROR.message, SERVER_ERROR.statusCode))
     }
 })
 
