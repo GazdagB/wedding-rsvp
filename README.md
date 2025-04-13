@@ -66,6 +66,6 @@ You can check out the live version of this project here:
 ![alt text](assets/adminmore.gif)
 
 ## RSVP 
-All invited guest will recive a physical invitation. Along with the invitation a card sized A7 with the necesarry information for each guest to be able to RSVP. 
+All invited guests will receive a physical invitation. Along with the invitation, an A7-sized card will be included containing the necessary information for each guest to RSVP.
 ![alt text](/assets/invitationCard.png)
 ![alt text](/assets/RSVPForm.png)
