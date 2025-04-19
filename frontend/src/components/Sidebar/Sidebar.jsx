@@ -1,49 +1,76 @@
-import React from 'react'
 import { useAuth } from '../../auth/AuthContext'; 
 import { CgLogOut, CgHome } from "react-icons/cg";
 import { Link, NavLink } from 'react-router-dom';
-import { FaGlobeAfrica } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
+import { FaUser,FaStar,FaGlobeAfrica } from "react-icons/fa";
+import {motion} from "motion/react"; 
 
 
-const Sidebar = () => {
+
+
+const Sidebar = ({isOpen}) => {
   const {logout} = useAuth(); 
 
+  
+
   return (
-    <div className='fixed bg-wedding-champagne h-[100svh] w-[280px] py-30 flex flex-col items-center justify-between'>
+    <motion.div className={`fixed bg-wedding-champagne h-[100svh] ${isOpen ? "w-[280px]" : ""} py-30 flex flex-col items-center justify-between`}
+    initial={{width: 100}}
+    animate={isOpen ? {width: 280}: {width: 70}}
+    >
       <ul className='flex flex-col w-full mt-8'>
         <NavLink 
           to="/admin" 
           className={({ isActive }) => 
             isActive 
-              ? "bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors" 
-              : "p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors"
+              ? `bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors  ${isOpen ? "" : "justify-center"}`
+              : `p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors  ${isOpen ? "" : "justify-center"}`
           }
           end
         >
           <CgHome size={20} />
-          <span>Áttekintés</span>
+          <span className={`${isOpen ? "" : "hidden"}`}>Áttekintés</span>
         </NavLink>
         
         <NavLink 
           to="/admin/guests" 
           className={({ isActive }) => 
             isActive 
-              ? "bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors" 
-              : "p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors"
+              ? `bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors  ${isOpen ? "" : "justify-center"}` 
+              : `p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors  ${isOpen ? "" : "justify-center"}`
           }
         >
           <CgLogOut size={20} />
-          <span>Vendégek</span>
+          <motion.span 
+          initial={{opacity: 0, width: 0}}
+          animate={{opacity: 1, width: "auto"}}
+          className={`${isOpen ? "" : "hidden"}`}
+          >Vendégek</motion.span>
         </NavLink>
 
         <NavLink  className={({ isActive }) => 
             isActive 
-              ? "bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors" 
-              : "p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors"
+              ? `bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors  ${isOpen ? "" : "justify-center"}` 
+              : `p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors  ${isOpen ? "" : "justify-center"}`
           } to="/admin/names">
         <FaUser />
-        Nevek
+        <motion.span
+        initial={{opacity: 0, width: 0}}
+        animate={{opacity: 1, width: "auto"}}
+        className={`${isOpen ? "" : "hidden"}`}
+        >Nevek</motion.span>
+        </NavLink>
+
+        <NavLink  className={({ isActive }) => 
+            isActive 
+              ? `bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors ${isOpen ? "" : "justify-center"}`
+              : `p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors  ${isOpen ? "" : "justify-center"}`
+          } to="/admin/whishes">
+        <FaStar />
+        <motion.span
+        initial={{opacity: 0, width: 0}}
+        animate={{opacity: 1, width: "auto"}}
+        className={`${isOpen ? "" : "hidden"}`}
+        >Kívánságok</motion.span>
         </NavLink>
       </ul>
 
@@ -53,19 +80,27 @@ const Sidebar = () => {
           className='cursor-pointer mb-8 bg-wedding-brown-darker text-white p-3 rounded-md hover:bg-wedding-gray transition-colors flex gap-2'
         >
           <CgLogOut size={20} />
-          <span>Kijelentkezés</span>
+          <motion.span
+          initial={{opacity: 0, width: 0}}
+          animate={{opacity: 1, width: "auto"}}
+          className={`${isOpen ? "": "hidden"}`}
+          >Kijelentkezés</motion.span>
         </div>
 
         <Link to={'/'}>
-        <div className='flex gap-2 items-center text-wedding-brown-darker cursor-pointer'>
+        <div className={`flex gap-2 items-center text-wedding-brown-darker cursor-pointer ${isOpen ? "":"justify-center"}`}>
         <FaGlobeAfrica />
-          <p>Vissza az oldalra</p>
+          <motion.p
+          initial={{opacity: 0, width: 0}}
+          animate={{opacity: 1, width: "auto"}}
+          className={`${isOpen ? "": "hidden"}`}
+          >Vissza az oldalra</motion.p>
         </div>
         </Link>
         
 
       </div>
-    </div>
+    </motion.div>
   )
 }
 

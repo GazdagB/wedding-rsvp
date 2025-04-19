@@ -103,6 +103,7 @@ const WhishForm = ({setIsModalOpen}) => {
 
         <div className="flex flex-col gap-3 items-center justify-center mt-5">
           <div className="bg-gray-200 w-20 h-20 rounded-full flex items-center justify-center text-wedding-brown text-2xl">
+            {/* TODO:  */}
             {selectedIcon === "heart" && <FaHeart />}
             {selectedIcon === "luck" && <GiClover />}
             {selectedIcon === "baby" && <FaBaby />}

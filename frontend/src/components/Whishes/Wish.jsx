@@ -1,6 +1,9 @@
 import { FaHeart } from "react-icons/fa";
-import { PiCloverFill } from "react-icons/pi";
-
+import { GiClover } from "react-icons/gi";
+import { FaBaby } from "react-icons/fa";
+import { FaMoneyBill } from "react-icons/fa";
+import { IoAirplane } from "react-icons/io5";
+import { FaHouse } from "react-icons/fa6";
 
 
 
@@ -10,16 +13,28 @@ const Wish = ({ text, icon,author="Gazdag Balázs", ref,}) => {
     
     let selectedIcon = <FaHeart />; 
 
-    switch (icon) {
-        case "heart":
-            selectedIcon = <FaHeart/>
-            break;
-        case "luck": 
-            selectedIcon = <PiCloverFill />
-            break;
-        default:
-            break;
-    }
+     switch (icon) {
+             case "heart":
+                 selectedIcon = <FaHeart/>
+                 break;
+             case "luck": 
+                 selectedIcon = <GiClover />
+                 break;
+             case "baby": 
+                 selectedIcon = <FaBaby />
+                 break; 
+             case "money": 
+                 selectedIcon = <FaMoneyBill />
+                 break;
+             case "plane": 
+                 selectedIcon = <IoAirplane />
+                 break;
+             case "house": 
+                 selectedIcon = <FaHouse />
+                 break; 
+             default:
+                 break;
+         }
 
     return (
       <div ref={ref} className={`bg-white text-black shadow-lg rounded-xl min-h-[150px] px-6 py-4 items-center min-w-[300px] md:min-w-[400px] flex gap-5 relative`}>

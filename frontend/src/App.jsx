@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Guests from './pages/Guests';
 import AdminLayout from './components/Sidebar/AdminLayout';
 import Names from './pages/Names';
+import WhishesPage from './pages/WhishesPage';
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
         <Route path='/admin/guests' element={<ProtectedRoute><Guests/></ProtectedRoute>}/>
         <Route path='/admin/names' element={<ProtectedRoute><Names/></ProtectedRoute>}></Route>
+        <Route path='/admin/whishes' element={<ProtectedRoute><WhishesPage/></ProtectedRoute>}/>
         <Route path="/" element={<Home/>} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>

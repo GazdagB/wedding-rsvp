@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import { useForm, useFieldArray } from "react-hook-form";
 
+//TODO: Add animation for form validation error messages
+
 const Accept = () => {
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 

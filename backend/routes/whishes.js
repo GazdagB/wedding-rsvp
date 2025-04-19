@@ -5,6 +5,7 @@ const fs = require("fs")
 const { MISSING_PASSWORD, GUEST_NOT_FOUND, INCORRECT_PASSWORD, LIMIT_REACHED, SERVER_ERROR } = require('../utils/errorsCodes');
 const AppError = require('../utils/AppError')
 
+//TODO: Do not return passwords 
 
 const router = express.Router();
 
