@@ -116,7 +116,7 @@ router.get('/counts', verifyToken, async (req, res) => {
   });
 
 //GET RSVP
-router.get('/:id', async (req,res)=>{
+router.get('/:id', verifyToken, async (req,res)=>{
     try{
         const rsvp = await RSVP.findById(req.params.id);
         if (!rsvp){
@@ -131,7 +131,7 @@ router.get('/:id', async (req,res)=>{
 })
 
 //Update RSVP
-router.put('/:id', async (req, res) => {
+router.put('/:id', verifyToken, async (req, res) => {
     try {
         const updatedRsvp = await RSVP.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedRsvp) {
@@ -144,7 +144,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/all/:password', async (req,res)=>{
+router.delete('/all/:password', verifyToken, async (req,res)=>{
     try{
         const {password} = req.params; 
 
@@ -164,7 +164,7 @@ router.delete('/all/:password', async (req,res)=>{
     }
 })
 
-router.delete('/:id', async (req,res)=>{
+router.delete('/:id', verifyToken, async (req,res)=>{
     try{
         const rsvpToDelete = await RSVP.findByIdAndDelete(req.params.id);
         if(!rsvpToDelete){

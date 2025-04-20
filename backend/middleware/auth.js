@@ -1,25 +1,28 @@
 const jwt = require('jsonwebtoken')
 
-// Middleware to verify JWT token
-const verifyToken = (req, res, next) => {
-    const authHeader = req.headers.authorization;
+const JWT_SECRET = process.env.JWT_SECRET; 
 
-    
-    
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ message: 'Access denied. No token provided.' });
+// Middleware to verify JWT token
+const verifyToken = (req,res,next) =>{
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; 
+
+    if(!token){
+        return res.status(401).json({message: 'No token provided'});
     }
-    
-    const token = authHeader.split(' ')[1];
-    
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = decoded;
-      next();
+
+    try{
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.user = decoded; 
+        next(); 
     } catch (error) {
-      console.error('Token verification error:', error);
-      return res.status(401).json({ message: 'Invalid token.' });
+        if(error.name = 'TokenExpiredError'){
+            return res.status(401).json({message: 'Token Expired'})
+        }
+
+        return res.status(403).json({message: 'Invalid token'})
     }
-  };
+
+};
 
   module.exports = verifyToken;

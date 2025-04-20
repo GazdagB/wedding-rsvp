@@ -7,6 +7,8 @@ import axios from 'axios';
 
 const AuthContext = createContext(null);
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -33,13 +35,22 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
+
         // Set up axios to use token in all requests
+        const response = await axios.get(`${API_URL}/auth/validate-token`);
+
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+        if(response.status === 200){
+          setIsAuthenticated(true);
+        } else{
+          throw new Error('Token validation faild')
+        }
         
-        setIsAuthenticated(true);
+ 
       } catch (error) {
-        console.error('Token validation failed:', error);
         logout();
+        console.error('Token validation failed:', error);
       } finally {
         setLoading(false);
       }
@@ -66,15 +77,31 @@ export const AuthProvider = ({ children }) => {
   }, [navigate]);
 
   // Login function
-  const login = (token) => {
-    const expiresAt = new Date().getTime() + (24 * 60 *60 * 1000);
+  const login = async (token) => {
+    try{
 
-    localStorage.setItem('token', token);
-    localStorage.setItem('tokenExpiry', expiresAt)
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    setIsAuthenticated(true);
-    navigate('/admin');
+      const response = await axios.get(`${API_URL}/auth/validate-token`);
+
+      if (response.status !== 200) {
+        throw new Error('Invalid token');
+      }
+
+      const expiresAt = new Date().getTime() + (24 * 60 *60 * 1000);
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('tokenExpiry', expiresAt)
+  
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setIsAuthenticated(true);
+      navigate('/admin');
+    }catch(error){
+      console.error('Login Failed: ', error); 
+      delete axios.defaults.headers.common['Authorization']
+      throw new Error('Authentication failed');
+    }
+   
   };
 
   // Logout function

@@ -6,6 +6,7 @@ require('dotenv').config();
 const rsvpRoutes = require('./routes/rsvp');
 const adminRoutes = require('./routes/admin')
 const whishRouter = require('./routes/whishes');
+const {router : AuthRouter, verifyToken} = require('./routes/auth')
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express(); 
@@ -22,6 +23,7 @@ app.get('/', (req,res)=>{
 
 app.use('/rsvp',rsvpRoutes)
 app.use('/admin', adminRoutes)
+app.use('/auth', AuthRouter)
 app.use('/whish', whishRouter)
 
 app.use(errorHandler)
