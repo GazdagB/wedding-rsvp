@@ -11,7 +11,7 @@ const invitedGuestsPath = path.join(__dirname, '../data/invitedGuests.json');
 const invitedGuests = JSON.parse(fs.readFileSync(invitedGuestsPath, 'utf8'))
 
 //POST an RSVP
-router.post('/', async (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
     const { familyName, accept, email, adults, children5to10, childrenUnder5, message, adultsNames, children5to10Names, childrenUnder5Names, password } = req.body;
 
     if(!password){
