@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     const checkToken = async () => {
       const token = localStorage.getItem('token');
       const tokenExpiry = localStorage.getItem('tokenExpiry')
+      console.log('Token Expiry:', tokenExpiry);
       
       if (!token || !tokenExpiry) {
         setIsAuthenticated(false);
@@ -27,6 +28,8 @@ export const AuthProvider = ({ children }) => {
       }
 
       const now = new Date().getTime();
+      console.log('Now:', now)
+      console.log('Time left:', tokenExpiry - now);
       if(now > parseInt(tokenExpiry)){
         console.log("Token expired");
         logout();
@@ -35,11 +38,11 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         // Set up axios to use token in all requests
         const response = await axios.get(`${API_URL}/auth/validate-token`);
 
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        
 
         if(response.status === 200){
           setIsAuthenticated(true);
