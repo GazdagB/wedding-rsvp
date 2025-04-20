@@ -25,7 +25,7 @@ const Navbar = ({ activeLink }) => {
   }, [isOpen]);
 
   return (
-    <nav className="fixed items-center flex justify-between lg:justify-between top-0 left-1/2 transform -translate-x-1/2 mt-4 bg-white/70 lg:bg-white/60 backdrop-blur-3xl lg:backdrop-blur-md px-4 py-10 md:pb-10 lg:pb-15 lg:max-w-[1020px] xl:max-w-[1150px] 2xl:max-w-[1350px] w-[90%] lg:px-10 xl:px-20 z-20 rounded-lg">
+    <nav className="fixed items-center flex justify-between lg:justify-between top-0 left-1/2 transform -translate-x-1/2 mt-4 bg-white/70 lg:bg-white/60 backdrop-blur-3xl lg:backdrop-blur-md px-4 py-5 md:pb-10 lg:pb-15 lg:max-w-[1020px] xl:max-w-[1150px] 2xl:max-w-[1350px] w-[90%] lg:px-10 xl:px-10 z-20 rounded-lg">
       
       {/* Animated Mobile Menu */}
       <motion.div

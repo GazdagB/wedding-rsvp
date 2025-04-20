@@ -14,7 +14,7 @@ const Accordion = ({question,answer}) => {
     <div onClick={handleToggle} className='py-7 z-10 rounded-md bg-white w-[85%] md:w-[650px] px-5 mb-2 cursor-pointer'>
         <div className='flex flex-col justify-between'>
             <div className='flex justify-between w-full'>
-                <span className={`font-bold me-5 text-[18px] md:text-[20px] transition-all duration-300 ease-in-out ${accordionOpen ? "mb-2" :""}`}>{question}</span>
+                <span className={`font-bold me-5 text-[18px] transition-all duration-300 ease-in-out ${accordionOpen ? "mb-2" :""}`}>{question}</span>
                 {accordionOpen 
                 ? <span><FontAwesomeIcon icon={faMinus} /></span> 
                 : <span><FontAwesomeIcon icon={faPlus} /></span> 

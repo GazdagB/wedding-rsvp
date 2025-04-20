@@ -26,7 +26,7 @@ const Location = ({setActiveLink}) => {
    
   return (
     <div ref={myRef} id="helyszin" className="w-full flex py-12 items-center bg-wedding-champagne flex-col">
-        <h2 className="dancing text-5xl md:text-6xl text-wedding-gray mb-[63px]">A helyszín</h2>
+        <h2 className="dancing text-4xl md:text-5xl text-wedding-gray mb-[63px]">A helyszín</h2>
         <div className="flex flex-col lg:flex-row items-center justify-center gap-[50px] lg:gap-[100px]">
           <div className="grid grid-cols-2 w-[300px] md:w-[400px] grid-rows-2">
             <div className="w-[150px] md:w-[200px] aspect-square" style={{backgroundImage: "url('/images/galfy/galfy-drone.jpg')",backgroundPosition:"center", backgroundSize: "250%"}}></div>
@@ -37,10 +37,10 @@ const Location = ({setActiveLink}) => {
 
           <div className="text-center flex md:block flex-col items-center lg:text-start text-pretty">
             <h3 className="text-4xl lg:text-[32px] dancing font-bold mb-[18px] ">Gálffy Birtok - Bogád</h3>
-            <p className="w-[80%]  md:w-[450px] xl:w-[600px] mb-5">Lorem ipsum dolor sit amet consectetur. Quam est natoque pellentesque elementum purus fringilla ante neque. Sed volutpat ultrices et erat. Pellentesque faucibus elit at nisl consequat congue malesuada nibh tristique. Cursus consectetur condimentum potenti mauris tempus ac nec.
+            <p className="w-[80%] md:w-[450px] xl:w-[600px] mb-5">Lorem ipsum dolor sit amet consectetur. Quam est natoque pellentesque elementum purus fringilla ante neque. Sed volutpat ultrices et erat. Pellentesque faucibus elit at nisl consequat congue malesuada nibh tristique. Cursus consectetur condimentum potenti mauris tempus ac nec.
             </p>
             <p className="font-bold mb-[51px]">Bogád, Kápolnás domb, 7742 Magyarország</p>
-            <div className="text-3xl justify-center lg:justy-start flex gap-3 text-[#342d24]">
+            <div className="text-3xl justify-center lg:justify-start flex gap-3 text-[#342d24]">
             <Link to={"https://galffybirtok.hu/"} target="_blank">
               <FontAwesomeIcon icon={faGlobe} />
             </Link>

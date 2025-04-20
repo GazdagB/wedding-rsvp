@@ -11,7 +11,7 @@ const GYIK = () => {
     style={{backgroundImage: "url('/images/gyik-bg.jpg')"}}
     >
         <div className='bg-black inset-0 absolute opacity-50 backdrop-blur-lg z-0'></div>
-        <h2 className=' text-5xl md:text-6xl dancing text-white z-10 my-10'>Gyakran Ismételt Kérdések</h2>
+        <h2 className=' text-3xl md:text-4xl dancing text-white z-10 my-10'>Gyakran Ismételt Kérdések</h2>
         {gyik.map((question,id)=>{
             return (<Accordion key={id} answer={question.answer} question={question.question}/>)
         })}
