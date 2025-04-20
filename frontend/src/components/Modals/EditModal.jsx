@@ -85,7 +85,7 @@ const EditModal = ({ guest, setEditModalIsOpen }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="absolute w-[100vw] min-h-[100vh] py-20 top-0 left-0 z-50 flex items-center justify-center"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
