@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import WhishAdmin from '../components/Whishes/WhishAdmin';
+import EditWhishModal from '../components/Modals/EditWhishModal';
 
 
 const Whishes = () => {
 
+    const [isEditModalOpen, setEditModalOpen] = useState(false); 
     const [whishes, setWhishes] = useState([]); 
 
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
@@ -28,8 +30,11 @@ const Whishes = () => {
   return (
     <div className=' pt-20 ps-15  w-full h-full flex items-start justify-center'>
         <div className='grid xl:grid-cols-3 grid-cols-1 lg:grid-cols-2 gap-3 max-w-[1200px]'>
+
+            {isEditModalOpen && <EditWhishModal setEditModalOpen={setEditModalOpen}></EditWhishModal>}
+
             {whishes.map((whish,index)=>{
-                return <WhishAdmin author={whish.author} icon={whish.iconType} key={index} text={whish.message} ></WhishAdmin>
+                return <WhishAdmin setEditModalOpen={setEditModalOpen} author={whish.author} icon={whish.iconType} key={index} text={whish.message} ></WhishAdmin>
             })}
         </div>
     </div>

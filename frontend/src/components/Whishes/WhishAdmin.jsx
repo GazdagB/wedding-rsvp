@@ -5,9 +5,16 @@ import { FaBaby } from "react-icons/fa";
 import { FaMoneyBill } from "react-icons/fa";
 import { IoAirplane } from "react-icons/io5";
 import { FaHouse } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
 
-const WhishAdmin = ({ text, icon,author="Gazdag Balázs",}) => {
+
+
+const WhishAdmin = ({ text, icon,author="Gazdag Balázs",setEditModalOpen}) => {
     if (!text) return null;
+
+    function handleOpenModal(){
+        setEditModalOpen(true); 
+    }
 
      let selectedIcon = <FaHeart />; 
     
@@ -34,7 +41,11 @@ const WhishAdmin = ({ text, icon,author="Gazdag Balázs",}) => {
                 break;
         }
   return (
-    <div  className={`bg-white text-black shadow-lg rounded-xl min-h-[150px] px-6 py-4 items-center min-w-[200px] md:min-w-[300px] flex gap-5 relative`}>
+    <div
+    onClick={handleOpenModal}
+    className={`bg-white text-black shadow-lg rounded-xl min-h-[150px] px-6 py-4 items-center min-w-[200px] md:min-w-[300px] flex gap-5 relative`}>
+        <FaEdit className='absolute top-6 right-5 cursor-pointer'/>
+
     {/* Icon */}
     <div className="text-wedding-brown text-xl bg-gray-200 h-13 w-13 rounded-full flex-shrink-0 flex items-center justify-center">
         {selectedIcon}
