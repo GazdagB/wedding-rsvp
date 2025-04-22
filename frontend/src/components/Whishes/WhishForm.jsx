@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { BiSolidDownArrow } from "react-icons/bi";
 import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form"
+import {PropTypes} from "prop-types"
 
 import { useState } from "react";
 import axios from "axios";
@@ -228,5 +229,9 @@ const WhishForm = ({setIsModalOpen}) => {
     </div>
   );
 };
+
+WhishForm.PropTypes = {
+  setIsModalOpen: PropTypes.
+}
 
 export default WhishForm;

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Wish from "./Wish";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef , useCallback} from "react";
 import axios from "axios";
 import WhishForm from "./WhishForm";
 
@@ -18,18 +18,18 @@ const Wishes = () => {
     setIsModalOpen(true)
   }
 
-  const fetchWishes = async () => {
+  const fetchWishes = useCallback(async () => {
     try {
       const response = await axios.get(`${API_URL}/whish/all`);
       setWishesData(response.data.data);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [API_URL]);
 
   useEffect(() => {
     fetchWishes();
-  }, []);
+  }, [fetchWishes]);
 
 
   // Calculate and update drag constraints

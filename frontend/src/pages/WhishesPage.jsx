@@ -12,23 +12,20 @@ const Whishes = () => {
 
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
-    const fetchData = async ()=>{
-        try {
-          
-                const response = await axios.get(`${API_URL}/whish/all`); 
-                setWhishes(response.data.data); 
-            
-        } catch (error) {
-            console.error(error);
-        }}
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/whish/all`);
+                setWhishes(response.data.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
-
-    useEffect(()=>{
-        if(!isEditModalOpen){
-            fetchData(); 
+        if (!isEditModalOpen) {
+            fetchData();
         }
-    },[isEditModalOpen])
-
+    }, [isEditModalOpen, API_URL]);
   return (
     <div className=' pt-20 ps-15  w-full h-full flex items-start justify-center'>
         <div className='grid xl:grid-cols-3 grid-cols-1 lg:grid-cols-2 gap-3 max-w-[1200px]'>

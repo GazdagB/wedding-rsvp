@@ -10,6 +10,7 @@ import { AnimatePresence } from "motion/react";
 import { BiSolidDownArrow } from "react-icons/bi";
 import axios from "axios"
 import {toast} from "react-toastify"
+import PropTypes from 'prop-types';
 
 
 const EditWhishModal = ({setEditModalOpen, whishData}) => {
@@ -267,6 +268,16 @@ const EditWhishModal = ({setEditModalOpen, whishData}) => {
         </div>
     </motion.div>
   )
+}
+
+EditWhishModal.PropTypes = {
+  setEditModalOpen: PropTypes.bool.isRequired,
+  whishData: PropTypes.shape({
+    author: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    iconType: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default EditWhishModal
