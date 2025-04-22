@@ -16,12 +16,10 @@ const Whishes = () => {
         try {
           
                 const response = await axios.get(`${API_URL}/whish/all`); 
-                console.log(response.data.data);
                 setWhishes(response.data.data); 
             
         } catch (error) {
-            console.log(error);
-            
+            console.error(error);
         }}
 
 

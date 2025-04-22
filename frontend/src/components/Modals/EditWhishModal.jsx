@@ -28,14 +28,11 @@ const EditWhishModal = ({setEditModalOpen, whishData}) => {
       e.preventDefault(); 
 
       const dataToSubmit = {...whish, iconType: selectedIcon};
-      console.log(dataToSubmit);
       
       try {
         const result = await axios.put(`${API_URL}/whish/${dataToSubmit._id}`, dataToSubmit)
 
         if(result.status === 200){
-          console.log("Success");
-          console.log(result.data);
           
           toast.success('Sikeresen kívánság módosítás!', {
             position: "top-right",
@@ -52,7 +49,7 @@ const EditWhishModal = ({setEditModalOpen, whishData}) => {
            
         }
       } catch (error) {
-        console.log(error); 
+        console.error(error); 
         toast.warn(` Valami hiba történt! (${error.message})`, {
           position: "top-right",
           autoClose: 5000,

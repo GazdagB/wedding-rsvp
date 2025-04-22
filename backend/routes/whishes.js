@@ -32,7 +32,6 @@ router.post("/",async (req,res, next)=>{
     }
 
     const submittedCount = await Whish.find({familyName: familyName})
-    console.log(submittedCount);
     
 
     if(submittedCount.length > 3){
