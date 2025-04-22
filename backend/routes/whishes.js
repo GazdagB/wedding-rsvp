@@ -1,6 +1,7 @@
 const express = require('express'); 
 const Whish = require('../models/Whishes'); 
 const path = require("path")
+const verifyToken = require("../middleware/auth")
 const fs = require("fs")
 const { MISSING_PASSWORD, GUEST_NOT_FOUND, INCORRECT_PASSWORD, LIMIT_REACHED, SERVER_ERROR } = require('../utils/errorsCodes');
 const AppError = require('../utils/AppError')
@@ -91,5 +92,18 @@ router.delete("/all/:password", async (req,res)=>{
         }
 
 })
+
+router.put('/:id', verifyToken, async (req, res) => {
+    try {
+        const updatedWhish = await Whish.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedWhish) {
+            return res.status(404).json({ message: 'Whish not found' });
+        }
+        res.status(200).json(updatedWhish);
+    } catch (error) {
+        console.error('Error updating RSVP:', error);
+        res.status(500).json({ message: 'Error updating RSVP' });
+    }
+});
 
 module.exports = router;

@@ -8,7 +8,7 @@ import { IoAirplane } from "react-icons/io5";
 import { FaHouse } from "react-icons/fa6";
 import { AnimatePresence } from "motion/react";
 import { BiSolidDownArrow } from "react-icons/bi";
-import {axios} from "axios"
+import axios from "axios"
 
 
 const EditWhishModal = ({setEditModalOpen, whishData}) => {
@@ -26,6 +26,21 @@ const EditWhishModal = ({setEditModalOpen, whishData}) => {
     async function handleSubmit(e){
       e.preventDefault(); 
 
+      const dataToSubmit = {...whish, iconType: selectedIcon};
+      console.log(dataToSubmit);
+      
+      try {
+        const result = await axios.put(`${API_URL}/whish/${dataToSubmit._id}`, dataToSubmit)
+
+        if(result.status === 200){
+          console.log("Success");
+          console.log(result.data);
+          
+          
+        }
+      } catch (error) {
+        console.error(error); 
+      }
     }
 
     function closeModal(){
@@ -48,6 +63,7 @@ const EditWhishModal = ({setEditModalOpen, whishData}) => {
 
     useEffect(()=>{
         setWhish(whishData); 
+        setSelectedIcon(whishData.iconType)
     }, [whishData])
    
 
