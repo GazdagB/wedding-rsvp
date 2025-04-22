@@ -9,6 +9,7 @@ import { FaHouse } from "react-icons/fa6";
 import { AnimatePresence } from "motion/react";
 import { BiSolidDownArrow } from "react-icons/bi";
 import axios from "axios"
+import {toast} from "react-toastify"
 
 
 const EditWhishModal = ({setEditModalOpen, whishData}) => {
@@ -36,10 +37,32 @@ const EditWhishModal = ({setEditModalOpen, whishData}) => {
           console.log("Success");
           console.log(result.data);
           
-          
+          toast.success('Sikeresen kívánság módosítás!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+
+            setEditModalOpen(false); 
+           
         }
       } catch (error) {
-        console.error(error); 
+        console.log(error); 
+        toast.warn(` Valami hiba történt! (${error.message})`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
       }
     }
 

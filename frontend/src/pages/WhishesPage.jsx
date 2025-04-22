@@ -12,8 +12,7 @@ const Whishes = () => {
 
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
-    useEffect(()=>{
-        const fetchData = async ()=>{
+    const fetchData = async ()=>{
         try {
           
                 const response = await axios.get(`${API_URL}/whish/all`); 
@@ -25,8 +24,12 @@ const Whishes = () => {
             
         }}
 
-        fetchData(); 
-    },[])
+
+    useEffect(()=>{
+        if(!isEditModalOpen){
+            fetchData(); 
+        }
+    },[isEditModalOpen])
 
   return (
     <div className=' pt-20 ps-15  w-full h-full flex items-start justify-center'>
