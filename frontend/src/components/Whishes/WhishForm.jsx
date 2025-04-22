@@ -14,6 +14,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const WhishForm = ({setIsModalOpen}) => {
+
   const [selectedIcon, setSelectedIcon] = useState("heart");
   const [isIconsOpen, setIsIconsOpen] = useState(false);
 
@@ -230,8 +231,8 @@ const WhishForm = ({setIsModalOpen}) => {
   );
 };
 
-WhishForm.PropTypes = {
-  setIsModalOpen: PropTypes.
-}
+WhishForm.propTypes = {
+  setIsModalOpen: PropTypes.func.isRequired,
+};
 
 export default WhishForm;
