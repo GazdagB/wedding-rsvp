@@ -9,6 +9,8 @@ import { BiSolidDownArrow } from "react-icons/bi";
 import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form"
 import {PropTypes} from "prop-types"
+import { IoCloseOutline } from "react-icons/io5";
+
 
 import { useState } from "react";
 import axios from "axios";
@@ -62,7 +64,13 @@ const WhishForm = ({setIsModalOpen}) => {
   }
 
   return (
-    <div className="py-10">
+    <div className="py-10 relative">
+
+      <div className="absolute top-5 right-10 cursor-pointer" onClick={() => setIsModalOpen(false)}>
+        <IoCloseOutline className="text-2xl"/>
+      </div>
+
+       
       <form className="flex flex-col items-center" onSubmit={handleSubmit(onSubmit)} action="">
         <div className="w-full px-10">
           <label htmlFor="">Családnév</label>
