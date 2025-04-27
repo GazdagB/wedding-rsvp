@@ -21,13 +21,13 @@ const Hero = ({setActiveLink}) => {
             <div className="flex items-center justify-center gap-6 md:mt-50">
                 <img className="absolute opacity-30 w-[600px] z-10 pointer-events-none" src="/images/infinite-symbol.svg" alt="" />
                 <div className="overflow-hidden hidden md:block">
-                    <img className="hover:scale-110 md:h-[298px] md:w-[198px] lg:h-[398px] lg:w-[298px] object-cover grayscale hover:grayscale-0 transition duration-300 cursor-pointer" src="/images/scala.JPG" alt="" />
+                    <img className="hover:scale-110 md:h-[298px] md:w-[198px] lg:h-[398px] lg:w-[298px] object-cover grayscale hover:grayscale-0 transition duration-300 cursor-pointer" src="/images/scala.webp" alt="" />
                 </div>
                 <div ref={myRef} className="overflow-hidden">
-                    <img className=" scale-120 hover:scale-130 h-[450px] lg:h-[550px] grayscale hover:grayscale-0 transition duration-300 cursor-pointer" src="/images/propose.JPG" alt="" />
+                    <img className=" scale-120 hover:scale-130 h-[450px] lg:h-[550px] grayscale hover:grayscale-0 transition duration-300 cursor-pointer" src="/images/propose.webp" alt="" />
                 </div>
                 <div className="overflow-hidden hidden md:block">
-                    <img className="object-cover scale-170 hover:scale-180 md:h-[298px] md:w-[198px] lg:h-[398px] lg:w-[298px] grayscale hover:grayscale-0 transition duration-300 cursor-pointer" src="/images/back.JPEG" alt="" />
+                    <img className="object-cover scale-170 hover:scale-180 md:h-[298px] md:w-[198px] lg:h-[398px] lg:w-[298px] grayscale hover:grayscale-0 transition duration-300 cursor-pointer" src="/images/back.webp" alt="" />
                 </div>
             </div>
             <p className='playfair text-5xl font-bold my-10 text-[#9F7C60] dancing'>Összeházasodunk!</p>

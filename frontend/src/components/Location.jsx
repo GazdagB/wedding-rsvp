@@ -29,10 +29,10 @@ const Location = ({setActiveLink}) => {
         <h2 className="dancing text-4xl md:text-5xl text-wedding-gray mb-[63px]">A helyszín</h2>
         <div className="flex flex-col lg:flex-row items-center justify-center gap-[50px] lg:gap-[100px]">
           <div className="grid grid-cols-2 w-[300px] md:w-[400px] grid-rows-2">
-            <div className="w-[150px] md:w-[200px] aspect-square" style={{backgroundImage: "url('/images/galfy/galfy-drone.jpg')",backgroundPosition:"center", backgroundSize: "250%"}}></div>
-            <div className="w-[150px] md:w-[200px] aspect-square" style={{backgroundImage: "url('/images/galfy/galfy-sign.jpg')", backgroundPosition: "-180px 0px", backgroundSize: "250%"}}></div>
-            <div className="w-[150px] md:w-[200px] aspect-squar" style={{backgroundImage: "url('/images/galfy/galfy-inside.jpg')", backgroundPosition: "-60px -50px",backgroundSize: '200%'}}></div>
-            <div className="w-[150px] md:w-[200px] aspect-squar" style={{backgroundImage: "url('/images/galfy/galfy-night.jpg')", backgroundPosition: "center",backgroundSize: "300%"}}></div>
+            <div className="w-[150px] md:w-[200px] aspect-square" style={{backgroundImage: "url('/images/galfy/galfy-drone.webp')",backgroundPosition:"center", backgroundSize: "250%"}}></div>
+            <div className="w-[150px] md:w-[200px] aspect-square" style={{backgroundImage: "url('/images/galfy/galfy-sign.webp')", backgroundPosition: "-180px 0px", backgroundSize: "250%"}}></div>
+            <div className="w-[150px] md:w-[200px] aspect-squar" style={{backgroundImage: "url('/images/galfy/galfy-inside.webp')", backgroundPosition: "-60px -50px",backgroundSize: '200%'}}></div>
+            <div className="w-[150px] md:w-[200px] aspect-squar" style={{backgroundImage: "url('/images/galfy/galfy-night.webp')", backgroundPosition: "center",backgroundSize: "300%"}}></div>
           </div>
 
           <div className="text-center flex md:block flex-col items-center lg:text-start text-pretty">

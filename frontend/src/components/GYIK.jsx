@@ -8,7 +8,7 @@ const GYIK = () => {
     
   return (
     <div className='relative bg-fixed flex flex-col items-center justify-center bg-center bg-cover py-10'
-    style={{backgroundImage: "url('/images/gyik-bg.jpg')"}}
+    style={{backgroundImage: "url('/images/gyik-bg.webp')"}}
     >
         <div className='bg-black inset-0 absolute opacity-50 backdrop-blur-lg z-0'></div>
         <h2 className=' text-3xl md:text-4xl dancing text-white z-10 my-10'>Gyakran Ismételt Kérdések</h2>
