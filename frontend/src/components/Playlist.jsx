@@ -12,7 +12,7 @@ const Playlist = () => {
         Zene lejátszási lista
       </h2>
       <p className="text-[18px] md:w-[600px] text-center text-pretty mb-10 text-wedding-light-gray">
-        Ha szeretnél zenét ajánlani vagy szeretnél bulizni velünk a kedvenc zenédre, akkor ebbe a Spotify listába hozzá tudod adni a legjobb slágereidet!
+        Ha szeretnél zenét ajánlani vagy szeretnél bulizni velünk a kedvenc zenédre, akkor ebbe a Spotify listához hozzá tudod adni a legjobb slágereidet!
       </p>
 
       {/* Skeleton */}
