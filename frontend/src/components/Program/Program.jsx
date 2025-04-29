@@ -1,7 +1,17 @@
 import Circle from './Circle'
 import Stage from './Stage'
+import { useState } from 'react'
+import { FaAngleDown,FaAngleUp  } from "react-icons/fa6";
+
 
 const Program = () => {
+
+  const [moreInfo, setMoreInfo] = useState(false)
+
+  const handleMoreInfo = () => {
+    setMoreInfo((prev) => !prev)
+  }
+
   return (
     <div className='bg-wedding-champagne flex flex-col items-center py-20'>
         <h2 className='text-wedding-deep-brown text-3xl md:text-4xl font-bold dancing mb-15'>A nap programja</h2>
@@ -24,19 +34,30 @@ const Program = () => {
         <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
 
         <Stage time={"19:00"} stageTitle={"Vacsora"} imageClass={"w-[90px] mt-[50px]"} iconSrc={"/images/Program/dinner.png"}/>
-        <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
-
-        <Stage time={"20:30"} stageTitle={"Nyitótánc"} iconSrc={"/images/Program/dance.png"} imageClass={"w-[80px] mt-[50px]"}/>
-        <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
-
-        <Stage time={"21:00"} stageTitle={"Sztárvendég"} imageClass={"w-[80px] mt-[50px]"} iconSrc={"/images/Program/guest.png"}/>
-        <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
-
-        <Stage time={"22:00"} stageTitle={"Tortavágás"} iconSrc={"/images/Program/cake.png"} imageClass={"w-[80px] mt-[50px]"}/>
-        <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
-
-        <Stage time={"00:00"} stageTitle={"Menyecske tánc"} imageClass={"w-[70px] mt-[50px]"} iconSrc={"/images/Program/midnightdance.png"}/>
         
+        
+        {
+          moreInfo && (
+            <>
+            <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
+
+            <Stage time={"20:30"} stageTitle={"Nyitótánc"} iconSrc={"/images/Program/dance.png"} imageClass={"w-[80px] mt-[50px]"}/>
+            <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
+    
+            <Stage time={"21:00"} stageTitle={"Sztárvendég"} imageClass={"w-[80px] mt-[50px]"} iconSrc={"/images/Program/guest.png"}/>
+            <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
+    
+            <Stage time={"22:00"} stageTitle={"Tortavágás"} iconSrc={"/images/Program/cake.png"} imageClass={"w-[80px] mt-[50px]"}/>
+            <div className='w-1 bg-wedding-deep-brown h-25 mt-10 rounded-md'></div>
+    
+            <Stage time={"00:00"} stageTitle={"Menyecske tánc"} imageClass={"w-[70px] mt-[50px]"} iconSrc={"/images/Program/midnightdance.png"}/>
+            </>
+          )
+        }
+
+        <p onClick={handleMoreInfo} className='font-sans font-bold flex items-center gap-2 text-wedding-brown-darker mt-10'> {moreInfo ? <FaAngleUp/> : <FaAngleDown />   
+ } {moreInfo ? "Mutass kevesebbet": "Mutass többet"}</p>
+       
 
         </div>
 
