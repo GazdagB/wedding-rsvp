@@ -41,12 +41,15 @@ const Login = () => {
     }
 
     return (
-        <div className="flex min-h-full h-[100svh] flex-1 flex-col justify-center px-6 py-12 lg:px-8 items-center">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="flex min-h-full h-[100svh] flex-1 flex-col justify-center px-6 py-20 lg:px-8 items-center">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm text-center">
                 <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-wedding-gray">
-                    Lépj be az admin felületbe
+                    Admin felület belépés
                 </h2>
+                <p>Kizárolag a vőlegény és mennyasszony részére!</p>
             </div>
+
+           
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 {error && (
@@ -110,12 +113,11 @@ const Login = () => {
                     </div>
                 </form>
 
-                <p className="mt-10 text-center text-sm/6 text-gray-500">
-                    Not a member?{' '}
-                    <a href="#" className="font-semibold text-wedding-brown hover:text-wedding-brown">
-                        Start a 14 day free trial
-                    </a>
-                </p>
+                <p className='w-full opacity-50 mt-20 text-gray text-center flex flex-col gap-3 p-10 rounded-md'>
+                    <span className='font-bold'>Megjegyzés</span>
+Itt kezeljük a vendégek visszajelzéseit, üzeneteit és fotóit, valamint az oldal teljes tartalmát.
+Ha véletlenül tévedtél ide, kérünk, hogy hagyd el az oldalt — ez a kulisszák mögötti rész. 😉</p>
+
             </div>
         </div>
     );
