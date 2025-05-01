@@ -1,13 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useRef ,useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { motion } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useForm, useFieldArray } from "react-hook-form";
 
 //TODO: Add animation for form validation error messages
 
-const Accept = () => {
+const Accept = ({setActiveLink}) => {
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+  const myRef = useRef();
+  const inView = useInView(myRef,{amount: 0.5})
+
+  useEffect(()=>{
+    if(inView){
+      setActiveLink("rsvp")
+    }
+  },[inView])
 
   // Setup react-hook-form
   const {
@@ -196,7 +205,7 @@ const Accept = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-20">
+    <div ref={myRef} id="rsvp"  className="flex flex-col items-center justify-center py-20">
       <h2 className="dancing text-6xl text-wedding-brown z-10 mb-4">
         Ott leszel?
       </h2>

@@ -62,7 +62,10 @@ const Navbar = ({ activeLink }) => {
           <Link to="datum" smooth={true} offset={-100} className="cursor-pointer">Dátum</Link>
           {activeLink === "date" && <div className="h-[2px] bg-amber-400 w-full"></div>}
         </div>
-        <Link to="program" className="cursor-pointer">Program</Link>
+        <div>
+          <Link smooth={true} offset={-100} to="program" className="cursor-pointer">Program</Link>
+          {activeLink === "program" && <div className="h-[2px] bg-amber-400 w-full"></div>}
+        </div>
         <Link to="foto" className="cursor-pointer">Fotó album</Link>
       </div>
 
@@ -83,7 +86,7 @@ const Navbar = ({ activeLink }) => {
           <RiKey2Line className={"cursor-pointer text-2xl"} />
         </NavLink>
         <Link>GYIK</Link>
-        <Link className="border border-wedding-light-gray text-wedding-gray p-2 font-semibold rounded-md hover:bg-wedding-brown hover:border-transparent hover:text-white transition duration-300" to="/rsvp">
+        <Link className={`${activeLink === "rsvp" ? "bg-wedding-brown border-transparent text-white" : "border-wedding-light-gray"} border cursor-pointer text-wedding-gray p-2 font-semibold rounded-md hover:bg-wedding-brown hover:border-transparent hover:text-white transition duration-300`} smooth={true} to="rsvp">
           Ott leszek!
         </Link>
       </div>

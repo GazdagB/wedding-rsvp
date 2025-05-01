@@ -23,8 +23,8 @@ const Home = () => {
         <Countdown/>
         <Location setActiveLink={setActiveLink}/>
         <Date setActiveLink={setActiveLink}/>
-        <Program/>
-        <Accept/>
+        <Program setActiveLink={setActiveLink}/>
+        <Accept setActiveLink={setActiveLink}/>
         <Whishes></Whishes>
         <GYIK/>
         <Playlist/>

@@ -1,10 +1,20 @@
 import Circle from './Circle'
 import Stage from './Stage'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { FaAngleDown,FaAngleUp  } from "react-icons/fa6";
+import { useInView } from "motion/react";
 
 
-const Program = () => {
+const Program = ({setActiveLink}) => {
+
+  const myRef = useRef();
+  const inView = useInView(myRef,{amount: 0.5})
+
+  useEffect(()=>{
+    if(inView){
+      setActiveLink("program")
+    }
+  },[inView])
 
   const [moreInfo, setMoreInfo] = useState(false)
 
@@ -13,7 +23,7 @@ const Program = () => {
   }
 
   return (
-    <div className='bg-wedding-champagne flex flex-col items-center py-20'>
+    <section ref={myRef} id='program' className='bg-wedding-champagne flex flex-col items-center py-20'>
         <h2 className='text-wedding-deep-brown text-3xl md:text-4xl font-bold dancing mb-15'>A nap programja</h2>
 
         {/* Mobile Icons */}
@@ -112,7 +122,7 @@ const Program = () => {
           </div>
         </div>
         
-    </div>
+    </section>
   )
 }
 
