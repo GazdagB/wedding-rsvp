@@ -6,7 +6,7 @@ import { HiMenuAlt3 } from "react-icons/hi";
 
 const MobileAdmin = () => {
   return (
-    <div className="fixed flex left-0 bottom-0 w-[100svw] bg-wedding-champagne h-20">
+    <div className="fixed flex left-0 bottom-0 w-[100svw] bg-wedding-champagne h-20 z-50">
         <NavLink
          to="/admin" 
          end
