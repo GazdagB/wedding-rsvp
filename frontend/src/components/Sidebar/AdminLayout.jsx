@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
+import MobileAdmin from '../MobileAdmin/MobileAdmin';
 import {useMediaQuery } from 'react-responsive'; 
 
 const AdminLayout = ({ children }) => {
@@ -14,6 +15,10 @@ const AdminLayout = ({ children }) => {
       {/* Fixed Sidebar */}
       {!isMobile && 
       <Sidebar isOpen={!isTabletOrMobile} />
+      }
+
+      {isMobile &&
+      <MobileAdmin />
       }
       
 

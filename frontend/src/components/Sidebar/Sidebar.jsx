@@ -20,12 +20,13 @@ const Sidebar = ({isOpen}) => {
       <ul className='flex flex-col w-full mt-8'>
         <NavLink 
           to="/admin" 
+          end
           className={({ isActive }) => 
             isActive 
               ? `bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors  ${isOpen ? "" : "justify-center"}`
               : `p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors  ${isOpen ? "" : "justify-center"}`
           }
-          end
+          
         >
           <CgHome size={20} />
           <span className={`${isOpen ? "" : "hidden"}`}>Áttekintés</span>
