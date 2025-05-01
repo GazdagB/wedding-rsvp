@@ -99,7 +99,7 @@ const EditWhishModal = ({setEditModalOpen, whishData}) => {
     >
         <div onClick={closeModal} className="absolute inset-0 bg-black/50"></div>
 
-        <div className="bg-white w-[500px] rounded-lg shadow-lg z-50 overflow-auto p-6 scrollbar-hidden">
+        <div className="bg-white w-[500px] mx-5 max-h-[100svh] rounded-lg shadow-lg z-50 overflow-auto p-6 scrollbar-hidden">
             <h2 className="font-bold text-2xl">Kívánságok szerketsztése</h2> 
             <form onSubmit={(e)=>{handleSubmit(e)}} action="" >
             <div className="flex flex-col gap-3 items-center justify-center mt-5">
@@ -257,7 +257,7 @@ const EditWhishModal = ({setEditModalOpen, whishData}) => {
                   <p className='text-center text-gray-500'>A törlés gombra kattintva törölni fogod a kiválasztott kivánságot biztos vagy benne?</p>
                   <div className='flex items-center jusitfy-center gap-3'>
                     <button onClick={handleDelete} className="cursor-pointer inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto">Törlés</button>
-                    <button onClick={closeDelete} className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset cursor-pointer hover:bg-gray-50 sm:mt-0 sm:w-auto">Mégsem</button>
+                    <button onClick={closeDelete} className="inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset cursor-pointer hover:bg-gray-50 sm:mt-0 sm:w-auto">Mégsem</button>
                   </div>
                 </div>
             </motion.div>

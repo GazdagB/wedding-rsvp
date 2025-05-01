@@ -27,8 +27,8 @@ const Whishes = () => {
         }
     }, [isEditModalOpen, API_URL]);
   return (
-    <div className='pt-10 md:pt-20 md:ps-15  w-full h-full flex items-start justify-center'>
-        <div className='grid xl:grid-cols-3 grid-cols-1 lg:grid-cols-2 gap-3 max-w-[1200px]'>
+    <div className='pt-10 md:ps-15 w-full  flex items-start justify-center'>
+        <div className='grid pb-20 xl:grid-cols-3 grid-cols-1 lg:grid-cols-2 gap-3 max-w-[1200px]'>
 
             {isEditModalOpen && <EditWhishModal whishData={whishes[selectedWhish]} setEditModalOpen={setEditModalOpen}></EditWhishModal>}
 
