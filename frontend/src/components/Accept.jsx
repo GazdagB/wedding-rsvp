@@ -1,4 +1,4 @@
-import { useState, useRef ,useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { motion, useInView } from "motion/react";
@@ -6,17 +6,17 @@ import { useForm, useFieldArray } from "react-hook-form";
 
 //TODO: Add animation for form validation error messages
 
-const Accept = ({setActiveLink}) => {
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const Accept = ({ setActiveLink }) => {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const myRef = useRef();
-  const inView = useInView(myRef,{amount: 0.5})
+  const inView = useInView(myRef, { amount: 0.5 });
 
-  useEffect(()=>{
-    if(inView){
-      setActiveLink("rsvp")
+  useEffect(() => {
+    if (inView) {
+      setActiveLink("rsvp");
     }
-  },[inView])
+  }, [inView]);
 
   // Setup react-hook-form
   const {
@@ -25,7 +25,7 @@ const Accept = ({setActiveLink}) => {
     control,
     watch,
     setValue,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     defaultValues: {
       familyName: "",
@@ -38,8 +38,8 @@ const Accept = ({setActiveLink}) => {
       children5to10Names: [],
       childrenUnder5Names: [],
       message: "",
-      password: ""
-    }
+      password: "",
+    },
   });
 
   // Create field arrays for dynamic form fields
@@ -47,30 +47,30 @@ const Accept = ({setActiveLink}) => {
     fields: adultsFields,
     append: appendAdult,
     remove: removeAdult,
-    replace: replaceAdults
+    replace: replaceAdults,
   } = useFieldArray({
     control,
-    name: "adultsNames"
+    name: "adultsNames",
   });
 
   const {
     fields: children5to10Fields,
     append: appendChild5to10,
     remove: removeChild5to10,
-    replace: replaceChildren5to10
+    replace: replaceChildren5to10,
   } = useFieldArray({
     control,
-    name: "children5to10Names"
+    name: "children5to10Names",
   });
 
   const {
     fields: childrenUnder5Fields,
     append: appendChildUnder5,
     remove: removeChildUnder5,
-    replace: replaceChildrenUnder5
+    replace: replaceChildrenUnder5,
   } = useFieldArray({
     control,
-    name: "childrenUnder5Names"
+    name: "childrenUnder5Names",
   });
 
   // Watch for changes in count fields to update arrays
@@ -85,10 +85,10 @@ const Accept = ({setActiveLink}) => {
       replaceAdults([]);
       return;
     }
-    
+
     const count = Number(adultsCount);
     const currentLength = adultsFields.length;
-    
+
     if (count > currentLength) {
       // Add new empty fields
       for (let i = currentLength; i < count; i++) {
@@ -100,7 +100,13 @@ const Accept = ({setActiveLink}) => {
         removeAdult(i);
       }
     }
-  }, [adultsCount, adultsFields.length, appendAdult, removeAdult, replaceAdults]);
+  }, [
+    adultsCount,
+    adultsFields.length,
+    appendAdult,
+    removeAdult,
+    replaceAdults,
+  ]);
 
   // Handle changes in children 5-10 count
   useEffect(() => {
@@ -109,10 +115,10 @@ const Accept = ({setActiveLink}) => {
       replaceChildren5to10([]);
       return;
     }
-    
+
     const count = Number(children5to10Count);
     const currentLength = children5to10Fields.length;
-    
+
     if (count > currentLength) {
       for (let i = currentLength; i < count; i++) {
         appendChild5to10({ name: "" });
@@ -122,7 +128,13 @@ const Accept = ({setActiveLink}) => {
         removeChild5to10(i);
       }
     }
-  }, [children5to10Count, children5to10Fields.length, appendChild5to10, removeChild5to10, replaceChildren5to10]);
+  }, [
+    children5to10Count,
+    children5to10Fields.length,
+    appendChild5to10,
+    removeChild5to10,
+    replaceChildren5to10,
+  ]);
 
   // Handle changes in children under 5 count
   useEffect(() => {
@@ -131,10 +143,10 @@ const Accept = ({setActiveLink}) => {
       replaceChildrenUnder5([]);
       return;
     }
-    
+
     const count = Number(childrenUnder5Count);
     const currentLength = childrenUnder5Fields.length;
-    
+
     if (count > currentLength) {
       for (let i = currentLength; i < count; i++) {
         appendChildUnder5({ name: "" });
@@ -144,7 +156,13 @@ const Accept = ({setActiveLink}) => {
         removeChildUnder5(i);
       }
     }
-  }, [childrenUnder5Count, childrenUnder5Fields.length, appendChildUnder5, removeChildUnder5, replaceChildrenUnder5]);
+  }, [
+    childrenUnder5Count,
+    childrenUnder5Fields.length,
+    appendChildUnder5,
+    removeChildUnder5,
+    replaceChildrenUnder5,
+  ]);
 
   const onSubmit = async (data) => {
     try {
@@ -155,9 +173,9 @@ const Accept = ({setActiveLink}) => {
         children5to10: Number(data.children5to10 || 0),
         childrenUnder5: Number(data.childrenUnder5 || 0),
         // Extract just the name values from the field array objects
-        adultsNames: data.adultsNames.map(item => item.name),
-        children5to10Names: data.children5to10Names.map(item => item.name),
-        childrenUnder5Names: data.childrenUnder5Names.map(item => item.name),
+        adultsNames: data.adultsNames.map((item) => item.name),
+        children5to10Names: data.children5to10Names.map((item) => item.name),
+        childrenUnder5Names: data.childrenUnder5Names.map((item) => item.name),
       };
 
       const response = await axios.post(`${API_URL}/rsvp`, formattedData);
@@ -205,14 +223,21 @@ const Accept = ({setActiveLink}) => {
   };
 
   return (
-    <div ref={myRef} id="rsvp"  className="flex flex-col items-center justify-center py-20">
+    <div
+      ref={myRef}
+      id="rsvp"
+      className="flex flex-col items-center justify-center py-20"
+    >
       <h2 className="dancing text-6xl text-wedding-brown z-10 mb-4">
         Ott leszel?
       </h2>
       <p className="text-wedding-light-gray mb-10 text-center text-pretty">
         Kérlek tudasd velünk hogy ott tudsz-e lenni velünk a nagy napunkon!
       </p>
-      <form className="md:w-[550px] w-full flex flex-col items-center justify-center" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="md:w-[550px] w-full flex flex-col items-center justify-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {/* family Name */}
         <div className="mb-8 w-full flex flex-col md:block items-center">
           <label htmlFor="familyName" className="font-bold">
@@ -235,10 +260,12 @@ const Accept = ({setActiveLink}) => {
 
         {/* Password field */}
         <div className="mb-10 flex w-full flex-col items-center md:items-start">
-          <label htmlFor="password" className="font-bold">Jelszó <span className="text-red-500">*</span></label>
-          <input 
+          <label htmlFor="password" className="font-bold">
+            Jelszó <span className="text-red-500">*</span>
+          </label>
+          <input
             id="password"
-            className="bg-gray-300 py-2 px-4 rounded-md w-4/5 md:w-full" 
+            className="bg-gray-300 py-2 px-4 rounded-md w-4/5 md:w-full"
             type="password"
             placeholder="Jelszó"
             {...register("password", { required: true })}
@@ -293,11 +320,11 @@ const Accept = ({setActiveLink}) => {
             className="bg-gray-300 py-2 px-4 rounded-md w-4/5 md:w-full"
             type="text"
             placeholder="E-mail"
-            {...register("email", { 
+            {...register("email", {
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Érvénytelen email cím"
-              }
+                message: "Érvénytelen email cím",
+              },
             })}
           />
           {errors.email && (
@@ -310,7 +337,9 @@ const Accept = ({setActiveLink}) => {
           <label htmlFor="adults" className="font-bold mb-3">
             Felnőttek száma <span className="text-red-500">*</span>
           </label>
-          <p className="mb-3 text-wedding-light-gray">Magadat beleértve. (Legalább 1 felnőtt)</p>
+          <p className="mb-3 text-wedding-light-gray">
+            Magadat beleértve. (Legalább 1 felnőtt)
+          </p>
           <select
             id="adults"
             className="bg-gray-300 w-4/5 md:w-full py-2 px-3 rounded-md"
@@ -330,12 +359,14 @@ const Accept = ({setActiveLink}) => {
 
         {adultsFields.length > 0 && (
           <div className="w-4/5 md:w-full">
-            <p className="text-center text-wedding-light-gray mb-5">A nevek megadása fontos az ültető kártyák szempontjából.</p>
+            <p className="text-center text-wedding-light-gray mb-5">
+              A nevek megadása fontos az ültető kártyák szempontjából.
+            </p>
             {adultsFields.map((field, index) => (
-              <motion.div 
-                initial={{y: -100}} 
-                animate={{y: 0}} 
-                key={field.id} 
+              <motion.div
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                key={field.id}
                 className="mb-2"
               >
                 <input
@@ -343,7 +374,7 @@ const Accept = ({setActiveLink}) => {
                   type="text"
                   placeholder={`Felnőtt ${index + 1} teljes neve`}
                   {...register(`adultsNames.${index}.name`, { required: true })}
-                /> 
+                />
                 {errors.adultsNames?.[index]?.name && (
                   <span className="text-red-500">Ez a mező kötelező!</span>
                 )}
@@ -374,12 +405,14 @@ const Accept = ({setActiveLink}) => {
 
           {children5to10Fields.length > 0 && (
             <div className="w-4/5 md:w-full">
-              <p className="text-center text-wedding-light-gray mb-5">A nevek megadása FONTOS! az ültető kártyák szempontjából.</p>
+              <p className="text-center text-wedding-light-gray mb-5">
+                A nevek megadása FONTOS! az ültető kártyák szempontjából.
+              </p>
               {children5to10Fields.map((field, index) => (
-                <motion.div 
-                  initial={{y: -100}} 
-                  animate={{y: 0}} 
-                  key={field.id} 
+                <motion.div
+                  initial={{ y: -100 }}
+                  animate={{ y: 0 }}
+                  key={field.id}
                   className="mb-2"
                 >
                   <input
@@ -413,12 +446,14 @@ const Accept = ({setActiveLink}) => {
 
           {childrenUnder5Fields.length > 0 && (
             <div className="w-4/5 md:w-full">
-              <p className="text-center text-wedding-light-gray mb-5">A nevek megadása FONTOS! az ültető kártyák szempontjából.</p>
+              <p className="text-center text-wedding-light-gray mb-5">
+                A nevek megadása FONTOS! az ültető kártyák szempontjából.
+              </p>
               {childrenUnder5Fields.map((field, index) => (
-                <motion.div 
-                  initial={{y: -100}} 
-                  animate={{y: 0}} 
-                  key={field.id} 
+                <motion.div
+                  initial={{ y: -100 }}
+                  animate={{ y: 0 }}
+                  key={field.id}
                   className="mb-2"
                 >
                   <input

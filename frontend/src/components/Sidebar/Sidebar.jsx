@@ -13,7 +13,7 @@ const Sidebar = ({isOpen}) => {
   
 
   return (
-    <motion.div className={`fixed bg-wedding-champagne h-[100svh] ${isOpen ? "w-[280px]" : ""} py-30 flex flex-col items-center justify-between`}
+    <motion.div className={`fixed top-0 left-0 bg-wedding-champagne h-screen ${isOpen ? "w-[280px]" : ""} py-30 flex flex-col items-center justify-between left-0 bottom-0`}
     initial={{width: 100}}
     animate={isOpen ? {width: 280}: {width: 70}}
     >

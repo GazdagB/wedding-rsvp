@@ -3,24 +3,22 @@ import Sidebar from '../Sidebar/Sidebar';
 import {useMediaQuery } from 'react-responsive'; 
 
 const AdminLayout = ({ children }) => {
-
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' })
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
-  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
-  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
-
- 
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   return (
-    <div className="flex min-h-screen">
-      {/* Invisible spacer to push content right */}
-      <div className={` ${!isTabletOrMobile ? "w-[280px]" : ""}`} />
-      
-      {/* Sidebar is fixed, not part of flow */}
-      <Sidebar isOpen={!isTabletOrMobile} />
+    <div className="flex h-screen overflow-hidden">
+      {/* Spacer div for layout only when not on mobile */}
+      {!isTabletOrMobile && <div className="w-[280px]" />}
 
-      {/* Main content area */}
-      <div className="flex-1 p-10">
+      {/* Fixed Sidebar */}
+      {!isMobile && 
+      <Sidebar isOpen={!isTabletOrMobile} />
+      }
+      
+
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-y-auto p-10">
         {children}
       </div>
     </div>
