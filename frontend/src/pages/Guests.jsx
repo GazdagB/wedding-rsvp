@@ -29,7 +29,7 @@ const Guests = () => {
       }
     };
     fetchGuests();
-  }, [deleteModalIsOpen,editModalIsOpen]);
+  }, [deleteModalIsOpen,editModalIsOpen,]);
 
   const openModal = (guest, type) => {
     setSelectedGuest(guest);
