@@ -61,7 +61,7 @@ You can check out the live version of this project here:
 ## Future Features to implement
 - 💰 Track wedding expenses by category (e.g., venue, catering, etc.)
 - To add a galery for images to upload during and after the wedding.
-
+- Full Admin page responsivity
 ## Admin Panel in Action 
 ![RSVP Admin Gif](/assets/RSVPadmin.gif)
 ![alt text](assets/adminmore.gif)
