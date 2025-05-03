@@ -88,8 +88,8 @@ const Guests = () => {
   ];
 
   return (
-    <div className='flex items-center justify-center '>
-      <div className='w-[70%] max-w-[300px] sm:max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1250px]  mt-30'>
+    <div className='flex items-center justify-center w-full'>
+      <div className='w-[100%] md:w-[70%] max-w-[300px] sm:max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1250px] mt-10 md:mt-30'>
         <DataGrid
           rows={rows}
           columns={columns}
