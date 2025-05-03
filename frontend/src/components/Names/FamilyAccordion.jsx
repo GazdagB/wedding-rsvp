@@ -8,7 +8,7 @@ const FamilyAccordion = ({ guest }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="w-[500px]">
+    <div className="max-w-[500px] w-full">
       {/* Header */}
       <div
         className="mb-4 text-wedding-brown-darker bg-wedding-champagne w-full flex items-center justify-between font-bold py-4 px-5 rounded-md cursor-pointer gap-5"
