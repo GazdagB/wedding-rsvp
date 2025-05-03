@@ -64,7 +64,7 @@ const Admin = () => {
     animate={{x: 0}}
     exit={{y: "100%"}}
     className="">
-      <div className="w-full pt-10 md:pt-50 flex flex-col  items-center justify-center">
+      <div className="w-full pt-10 pb-10 md:pt-50 flex flex-col  items-center justify-center">
           <h1 className="text-2xl md:text-3xl font-bold mb-20 text-wedding-brown">Esküvő adatok áttekintés</h1>
 
           <div className="flex flex-col items-center mb-10">
