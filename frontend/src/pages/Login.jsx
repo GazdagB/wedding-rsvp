@@ -46,7 +46,7 @@ const Login = () => {
                 <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-wedding-gray">
                     Admin felület belépés
                 </h2>
-                <p>git push Kizárolag a vőlegény és mennyasszony részére!</p>
+                <p>Kizárolag a vőlegény és mennyasszony részére!</p>
             </div>
 
            
