@@ -1,6 +1,9 @@
 import React from 'react'
 
 const Gallery = () => {
+
+    //TODO: implement image upload and gallery display
+    //TODO: Implement how many images to show on different screen sizes
   return (
     <div className='flex flex-col items-center justify-center w-full h-full py-10'>
       <h2 className="dancing text-6xl text-wedding-brown z-10 mb-4">I Spy Galéria</h2>
