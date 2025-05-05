@@ -8,6 +8,7 @@ import GYIK from '../components/GYIK'
 import Program from '../components/Program/Program'
 import Playlist from '../components/Playlist'
 import Navbar from '../components/Navbar'
+import Gallery from '../components/Gallery/Gallery'
 import { useState } from 'react'
 import Whishes from '../components/Whishes/Whishes'
 
@@ -26,6 +27,7 @@ const Home = () => {
         <Program setActiveLink={setActiveLink}/>
         <Accept setActiveLink={setActiveLink}/>
         <Whishes></Whishes>
+        <Gallery/>
         <GYIK/>
         <Playlist/>
     </div>
