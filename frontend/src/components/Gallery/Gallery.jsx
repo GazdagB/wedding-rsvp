@@ -1,6 +1,8 @@
 import { useMediaQuery } from 'react-responsive'
 const placeholderImages = Array.from({ length: 20 }, (_, i) => `https://placehold.co/300x${200 + (i % 4) * 50}?text=Image+${i + 1}`)
 
+
+//TODO: replace with actual images
 const Gallery = () => {
   const isLargeDesktop = useMediaQuery({ query: '(min-width: 1280px)' })
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
