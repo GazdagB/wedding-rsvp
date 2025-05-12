@@ -87,6 +87,8 @@ const Gallery = () => {
           </div>
         ))}
       </div>
+
+      <button className="py-3 mt-10 px-4 cursor-pointer rounded-md bg-wedding-brown text-white font-bold">Kép beküldése</button>
     </div>
   )
 }
