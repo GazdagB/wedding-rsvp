@@ -7,6 +7,9 @@ const placeholderImages = Array.from(
 
 const Gallery = () => {
 
+  //TODO: replace with real images 
+  //TODO: Images should be distributed in column orderd 
+
   // Media queries for design and image count 
   const is2XL = useMediaQuery({ query: '(min-width: 1536px)' })
   const isXL = useMediaQuery({ query: '(min-width: 1280px)' })
