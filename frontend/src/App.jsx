@@ -10,6 +10,7 @@ import Guests from './pages/Guests';
 import AdminLayout from './components/Sidebar/AdminLayout';
 import Names from './pages/Names';
 import WhishesPage from './pages/WhishesPage';
+import ISpy from './pages/ISpy';
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -51,6 +52,7 @@ function App() {
         <Route path='/admin/guests' element={<ProtectedRoute><Guests/></ProtectedRoute>}/>
         <Route path='/admin/names' element={<ProtectedRoute><Names/></ProtectedRoute>}></Route>
         <Route path='/admin/whishes' element={<ProtectedRoute><WhishesPage/></ProtectedRoute>}/>
+        <Route path="/ispy" element={<ISpy/>}/>
         <Route path="/" element={<Home/>} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
