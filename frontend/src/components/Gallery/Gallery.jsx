@@ -5,6 +5,29 @@ const placeholderImages = Array.from(
   (_, i) => `https://placehold.co/300x${200 + (i % 4) * 50}?text=Image+${i + 1}`
 )
 
+const mockedImages = [
+ "/images/mock/mock1.jpg",
+ "/images/mock/mock3.jpg",
+ "/images/mock/mock2.webp",
+  "/images/mock/mock4.jpg",
+  "/images/mock/mock5.jpg",
+  "/images/mock/mock6.jpg",
+  "/images/mock/mock7.jpg",
+  "/images/mock/mock8.jpg",
+  "/images/mock/mock9.jpg",
+  "/images/mock/mock10.webp",
+  "/images/mock/mock11.jpg",
+  "/images/mock/mock12.jpg",
+  "/images/mock/mock13.jpg",
+  "/images/mock/mock14.jpg",
+  "/images/mock/mock15.jpg",
+  "/images/mock/mock16.jpg",
+  "/images/mock/mock17.jpg",
+  "/images/mock/mock18.jpg",
+  "/images/mock/mock19.jpg",
+  "/images/mock/mock20.jpg",
+]
+
 const Gallery = () => {
 
   //TODO: replace with real images 
@@ -35,7 +58,7 @@ const Gallery = () => {
   const totalImages = columnCount * 4
 
   // Selects images based on the column count slices the placeholderImages array
-  const selectedImages = placeholderImages.slice(0, totalImages)
+  const selectedImages = mockedImages.slice(0, totalImages)
 
   // Distributes images into columns
   const columns = Array.from({ length: columnCount }, () => [])
@@ -44,13 +67,13 @@ const Gallery = () => {
   })
 
   return (
-    <div className='flex flex-col items-center justify-center w-full h-full py-10'>
+    <div className='flex flex-col items-center justify-center w-full h-full py-10'> 
       <h2 className="dancing text-6xl text-wedding-brown z-10 mb-4">I Spy Galéria</h2>
       <p className="text-wedding-light-gray mb-10 text-center text-pretty">
         Ez a galéria az I Spy játékhoz készült képeket tartalmazza.
       </p>
 
-      <div className='grid gap-2 w-max' style={{ gridTemplateColumns: `repeat(${columnCount}, auto)` }}>
+      <div className='grid gap-2 w-max max-h-[100vh] overflow-hidden' style={{ gridTemplateColumns: `repeat(${columnCount}, auto)` }}>
         {columns.map((col, i) => (
           <div key={i} className='flex flex-col gap-2'>
             {col.map((src, j) => (
@@ -58,7 +81,7 @@ const Gallery = () => {
                 key={j}
                 src={src}
                 alt={`Image ${j + 1}`}
-                className='w-[300px] h-auto object-cover rounded-md'
+                className='w-[300px] h-auto max-h-[300px] object-cover rounded-md'
               />
             ))}
           </div>
