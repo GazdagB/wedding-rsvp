@@ -37,7 +37,8 @@
     "react-spinners": "^0.15.0",
     "react-toastify": "^11.0.5",
     "sweetalert2": "^11.17.2",
-    "tailwindcss": "^4.0.6"
+    "tailwindcss": "^4.0.6",
+    "yet-another-react-lightbox": "^3.23.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

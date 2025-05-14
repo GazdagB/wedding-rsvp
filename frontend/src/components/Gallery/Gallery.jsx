@@ -1,4 +1,6 @@
 import { useMediaQuery } from 'react-responsive'
+import Lightbox from "yet-another-react-lightbox"
+import { useState } from 'react'
 
 const placeholderImages = Array.from(
   { length: 20 },
@@ -29,7 +31,7 @@ const mockedImages = [
 ]
 
 const Gallery = () => {
-
+const [open, setOpen] = useState(true); 
   //TODO: replace with real images 
   //TODO: Images should be distributed in column orderd 
 
@@ -89,6 +91,8 @@ const Gallery = () => {
       </div>
 
       <button className="py-3 mt-10 px-4 cursor-pointer rounded-md bg-wedding-brown text-white font-bold">Kép beküldése</button>
+
+      <Lightbox open={open}></Lightbox>
     </div>
   )
 }
