@@ -1,6 +1,9 @@
 import { useMediaQuery } from 'react-responsive'
 import Lightbox from "yet-another-react-lightbox"
 import { useState } from 'react'
+import { slides } from './data'
+import "yet-another-react-lightbox/styles.css";
+
 
 const placeholderImages = Array.from(
   { length: 20 },
@@ -31,9 +34,10 @@ const mockedImages = [
 ]
 
 const Gallery = () => {
-const [open, setOpen] = useState(true); 
+const [index,setIndex] = useState(-1); 
   //TODO: replace with real images 
   //TODO: Images should be distributed in column orderd 
+
 
   // Media queries for design and image count 
   const is2XL = useMediaQuery({ query: '(min-width: 1536px)' })
@@ -60,7 +64,7 @@ const [open, setOpen] = useState(true);
   const totalImages = columnCount * 4
 
   // Selects images based on the column count slices the placeholderImages array
-  const selectedImages = mockedImages.slice(0, totalImages)
+  const selectedImages = slides.slice(0, totalImages)
 
   // Distributes images into columns
   const columns = Array.from({ length: columnCount }, () => [])
@@ -78,11 +82,18 @@ const [open, setOpen] = useState(true);
       <div className='grid gap-2 w-max max-h-[100vh] overflow-hidden' style={{ gridTemplateColumns: `repeat(${columnCount}, auto)` }}>
         {columns.map((col, i) => (
           <div key={i} className='flex flex-col gap-2'>
-            {col.map((src, j) => (
+            {col.map((image, j) => (
               <img
-                key={j}
-                src={src}
-                alt={`Image ${j + 1}`}
+                onClick={() => {
+                  const flatIndex = j * columnCount + i;
+                  console.log(j);
+                  console.log(columnCount);
+                  console.log(i)
+                  setIndex(flatIndex);
+                }}
+                key={image.id}
+                src={image.src}
+                alt={image.title}
                 className='w-[300px] h-auto max-h-[300px] object-cover rounded-md'
               />
             ))}
@@ -92,7 +103,11 @@ const [open, setOpen] = useState(true);
 
       <button className="py-3 mt-10 px-4 cursor-pointer rounded-md bg-wedding-brown text-white font-bold">Kép beküldése</button>
 
-      <Lightbox open={open}></Lightbox>
+      <Lightbox 
+      index={index}
+      open={index >=0}
+      close={()=> setIndex(-1)}
+      slides={slides}></Lightbox>
     </div>
   )
 }
