@@ -3,6 +3,7 @@ import Lightbox from "yet-another-react-lightbox"
 import { useState } from 'react'
 import { slides } from './data'
 import "yet-another-react-lightbox/styles.css";
+import ImageUploading from "react-images-uploading"
 
 
 const placeholderImages = Array.from(
@@ -38,6 +39,7 @@ const [index,setIndex] = useState(-1);
   //TODO: replace with real images 
   //TODO: Images should be distributed in column orderd 
 
+  const [images,setImages] = useState([])
 
   // Media queries for design and image count 
   const is2XL = useMediaQuery({ query: '(min-width: 1536px)' })
@@ -72,9 +74,54 @@ const [index,setIndex] = useState(-1);
     columns[index % columnCount].push(img)
   })
 
+  function onChange(imageList, addUpdateIndex){
+    setImages(imageList)
+  }
+
   return (
     <div className='flex flex-col items-center justify-center w-full h-full py-10'> 
       <h2 className="dancing text-6xl text-wedding-brown z-10 mb-4">I Spy Galéria</h2>
+      <ImageUploading
+      multiple
+      value={images}
+      onChange={onChange}
+      maxNumber={10}
+      dataURLKey='data_url'
+      >
+{({
+        imageList,
+        onImageUpload,
+        onImageRemoveAll,
+        onImageUpdate,
+        onImageRemove,
+        isDragging,
+        dragProps,
+      }) => (
+        <div className="upload__image-wrapper">
+          <button
+            style={isDragging ? { color: 'red' } : undefined}
+            onClick={onImageUpload}
+            {...dragProps}
+            className="border p-3 rounded-md"
+          >
+            Kép feltöltése vagy húzd ide
+          </button>
+          <button onClick={onImageRemoveAll} className="ml-3 text-red-500">Összes törlése</button>
+          <div className="mt-4 flex gap-4 flex-wrap">
+            {imageList.map((image, index) => (
+              <div key={index} className="image-item relative">
+                <img src={image['data_url']} alt="" className="w-[150px] h-[150px] object-cover rounded-md" />
+                <div className="image-item__btn-wrapper mt-1 flex gap-2">
+                  <button onClick={() => onImageUpdate(index)} className="text-blue-500">Frissítés</button>
+                  <button onClick={() => onImageRemove(index)} className="text-red-500">Törlés</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      </ImageUploading>
       <p className="text-wedding-light-gray mb-10 text-center text-pretty">
         Ez a galéria az I Spy játékhoz készült képeket tartalmazza.
       </p>
