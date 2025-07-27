@@ -16,7 +16,7 @@ const Date = ({setActiveLink,}) => {
   
   return (
     <div ref={myRef} id="datum" className='relative py-30  px-5 bg-fixed  bg-center bg-cover flex items-center justify-center  flex-col'
-    style={{backgroundImage: "url('images/date-bg.webp')"}}
+    style={{backgroundImage: "url(https://images.unsplash.com/photo-1655664681880-29aaeb511f60?q=80&w=830&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"}}
     >
 
         <div className='bg-black inset-0 absolute opacity-50 backdrop-blur-lg z-0'></div>
