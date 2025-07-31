@@ -14,18 +14,20 @@ const invitedGuests = JSON.parse(fs.readFileSync(invitedGuestsPath, 'utf8'))
 router.post('/', async (req, res) => {
     const { familyName, accept, email, adults, children5to10, childrenUnder5, message, adultsNames, children5to10Names, childrenUnder5Names, password } = req.body;
 
+    const convertedFamilyName = familyName.trim().toLowerCase();
+
     if(!password){
         return res.status(400).json({message: 'A jelszó megadása kötelező!'}); 
     }
 
-    const existingRsvp = await RSVP.findOne({ familyName });
+    const existingRsvp = await RSVP.findOne({ familyName: convertedFamilyName });
         if (existingRsvp) {
             return res.status(400).json({ message: 'Nem sikerült beküldeni. Már érkezett tőled visszajelzés!' });
         }
 
 
     // Check if the guest is on the invite list
-    const guest = invitedGuests.find(g => g.familyName === familyName);
+    const guest = invitedGuests.find(g => g.familyName === convertedFamilyName);
 
     if(!guest){
        return res.status(400).json({message: 'A neved nem szerepl a listán vagy elírtad.'})
@@ -37,7 +39,7 @@ router.post('/', async (req, res) => {
 
     // Create a new RSVP document
     const newRsvp = new RSVP({
-        familyName,
+        familyName: convertedFamilyName,
         accept,
         email,
         adults,
