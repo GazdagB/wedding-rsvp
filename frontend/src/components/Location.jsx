@@ -37,7 +37,7 @@ const Location = ({setActiveLink}) => {
 
           <div className="text-center flex md:block flex-col items-center lg:text-start text-pretty">
             <h3 className="text-4xl lg:text-[32px] dancing font-bold mb-[18px] ">Gálffy Birtok - Bogád</h3>
-            <p className="w-[80%] md:w-[450px] xl:w-[600px] mb-5">Lorem ipsum dolor sit amet consectetur. Quam est natoque pellentesque elementum purus fringilla ante neque. Sed volutpat ultrices et erat. Pellentesque faucibus elit at nisl consequat congue malesuada nibh tristique. Cursus consectetur condimentum potenti mauris tempus ac nec.
+            <p className="w-[80%] md:w-[450px] xl:w-[600px] mb-5">Azért választottuk a Bogádon található Gálfi Birtokot, mert már az első pillanatban beleszerettünk a hely nyugalmába és varázsába. A gondozott kert, a tágas terasz és a természet közelsége mind azt sugallták, hogy ez a tökéletes helyszín arra a napra, amikor kimondjuk az igent. Szerettük volna, ha a családunk és a barátaink nemcsak egy gyönyörű környezetben ünnepelhetnek velünk, hanem igazán jól is érezhetik magukat. A birtok hangulata, a barátságos fogadtatás és az elegáns, mégis meghitt terek mind hozzájárultak ahhoz, hogy biztosak legyünk: itt szeretnénk megélni életünk egyik legszebb napját.
             </p>
             <p className="font-bold mb-[51px]">Bogád, Kápolnás domb, 7742 Magyarország</p>
             <div className="text-3xl justify-center lg:justify-start flex gap-3 text-[#342d24]">
