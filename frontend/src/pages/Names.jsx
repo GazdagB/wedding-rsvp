@@ -8,6 +8,9 @@ const Names = () => {
 
     const [guest, setGuest] = useState([]);
 
+    console.log(guest);
+    
+
       const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
     useEffect(()=>{
@@ -25,13 +28,26 @@ const Names = () => {
     }, [])
 
   return (
-    <div className="w-full h-full md:ml-[80px] ">
-        <div className="flex flex-col items-center justify-center max-w-100 pb-20">
-            <h2 className="font-bold text-2xl mb-5 mt-20">Vendég nevek</h2>
+    <div className="w-full h-full md:ml-[100px] ">
+        <div className="flex gap-10 items-start justify-center max-w-500 pb-20">
+            <div>
+            <h2 className="font-bold text-2xl mb-5 mt-20">✅ Ott lesznek nevek</h2>
             {guest.length === 0 ? "Még nincsenek visszaigazolt vendégek... ☹️" : ""}
-            {guest.map((guest,id )=>{
+
+             {guest.map((guest,id )=>{
                 return <FamilyAccordion key={id} guest={guest}/>
             })}
+            </div>
+
+            <div>
+            <h2 className="font-bold text-2xl mb-5 mt-20">❌ Nem lesznek ott</h2>
+            {guest.filter((guest)=> guest.accept === false).map((guest,id)=>{
+                return <FamilyAccordion key={id} guest={guest}/>
+            })}
+            </div>
+            
+
+           
             
         </div>
     </div>

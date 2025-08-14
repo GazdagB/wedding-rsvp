@@ -3,6 +3,8 @@ import { CgLogOut, CgHome } from "react-icons/cg";
 import { Link, NavLink } from 'react-router-dom';
 import { FaUser,FaStar,FaGlobeAfrica } from "react-icons/fa";
 import {motion} from "motion/react"; 
+import { BiSolidMessageSquareDetail } from "react-icons/bi";
+
 
 
 
@@ -72,6 +74,19 @@ const Sidebar = ({isOpen}) => {
         animate={{opacity: 1, width: "auto"}}
         className={`${isOpen ? "" : "hidden"}`}
         >Kívánságok</motion.span>
+        </NavLink>
+
+        <NavLink  className={({ isActive }) => 
+            isActive 
+              ? `bg-wedding-green text-white bg-wedding-brown-darker rounded-md p-4 flex items-center gap-3 transition-colors ${isOpen ? "" : "justify-center"}`
+              : `p-4 flex items-center gap-3 hover:bg-wedding-green/20 transition-colors  ${isOpen ? "" : "justify-center"}`
+          } to="/admin/messages">
+        <BiSolidMessageSquareDetail />
+        <motion.span
+        initial={{opacity: 0, width: 0}}
+        animate={{opacity: 1, width: "auto"}}
+        className={`${isOpen ? "" : "hidden"}`}
+        >Messages</motion.span>
         </NavLink>
       </ul>
 
