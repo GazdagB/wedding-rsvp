@@ -23,6 +23,9 @@ const Admin = () => {
   const [numbersIsLoading,setNumbersIsLoading] = useState(true); 
   const [foodPrice,setFoodprice] = useState(0); 
 
+  console.log("Guest numbers:", guestNumbers);
+  
+
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
   useEffect(()=>{
@@ -98,7 +101,7 @@ const Admin = () => {
 
 
           <div className="flex flex-col items-center mb-10">
-            <div className="bg-wedding-champagne p-5 w-40 text-xl font-semibold mb-3 rounded-md text-wedding-brown-darker text-center">69/130</div>
+            <div className="bg-wedding-champagne p-5 w-40 text-xl font-semibold mb-3 rounded-md text-wedding-brown-darker text-center">{`${guestNumbers.totalAttendees}/110`}</div>
             <p className="text-xl md:text-2xl">Vissza jelzettek száma</p>
           </div>
 

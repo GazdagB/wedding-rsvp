@@ -45,6 +45,7 @@ const Location = ({setActiveLink}) => {
               <FontAwesomeIcon icon={faGlobe} />
             </Link>
             <Link to={"https://www.facebook.com/profile.php?id=100076068657327"} target="_blank">
+            
               <FontAwesomeIcon icon={faFacebook} />
             </Link>
             <Link to={'https://www.instagram.com/explore/locations/106352835146773/galffy-birtok?igsh=eTVpdTJ1ZGw0Znh4'} target="_blank">
