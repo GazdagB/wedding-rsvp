@@ -1,8 +1,8 @@
 
 function calcFoodPrice(guestNumbers){
     let foodPrice = 0;
-    foodPrice = guestNumbers.totalAdults * 32900;
-    foodPrice += guestNumbers.totalChildren5to10 * (32900/2)
+    foodPrice = guestNumbers.totalAdults * 30400;
+    foodPrice += guestNumbers.totalChildren5to10 * (30400/2)
    return foodPrice;
  }
 
